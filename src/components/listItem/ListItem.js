@@ -3,25 +3,25 @@ import React from 'react'
 import "./listItem.scss"
 import { useState } from 'react'
 
-function ListItem({index}) {
+function ListItem({ index }) {
     //
     const [isHovered, setIsHovered] = useState(false)
 
 
     return (
 
-        <div className='listItem' 
-    style={{left:isHovered && index *225 -50} }
-        onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        <div className='listItem'
+            style={{ left: isHovered && index * 225 - 50 }}
+            onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
             <img src="https://images6.alphacoders.com/114/thumbbig-1141749.webp" alt="" />
 
 
             <div className="itemInfo">
                 <div className="icons">
-                    <PlayArrow />
-                    <Add />
-                    <ThumbUpAltOutlined />
-                    <ThumbDownAltOutlined />
+                    <PlayArrow className='icon' />
+                    <Add className='icon' />
+                    <ThumbUpAltOutlined className='icon' />
+                    <ThumbDownAltOutlined className='icon' />
                 </div>
 
                 <div className="itemInfoTop">
