@@ -11,9 +11,7 @@ function Watch() {
             </div>
 
             <video className='video' autoPlay progress controls src="assets/video1.mp4" />
-
         </div>
     )
 }
-
 export default Watch
