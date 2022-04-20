@@ -1,0 +1,116 @@
+.loginPage {
+    width: 100vw;
+    height: 130vh;
+    overflow-x: hidden;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%),
+        url("https://assets.nflxext.com/ffe/siteui/vlv3/8459cea4-79ab-4f27-9ef0-a7c92a30a9bb/20e8b869-a0ff-4444-8543-b1e989422cd9/NP-en-20220411-popsignuptwoweeks-perspective_alpha_website_large.jpg");
+    background-size: cover;
+    position: relative;
+
+    .loginPageTopRow {
+        .loginPageTopRowLogo {
+            width: 160px;
+            height: 46px;
+            cursor: pointer;
+            margin: 30px 60px;
+        }
+    }
+
+    .loginFormContainer {
+        width: 450px;
+        height: 700px;
+        background-color: black;
+
+        margin-left: 32%;
+
+        .loginForm {
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+
+            .loginFormSignInTitle {
+                font-size: 30px;
+                font-weight: 700;
+                margin-top: 20px;
+                color: white;
+            }
+
+            .loginFormEmailInput,
+            .loginFormPasswordInput {
+                width: 100%;
+                height: 44px;
+                margin-top: 40px;
+                border-radius: 4px;
+                border: none;
+                outline: none;
+                background-color: rgb(72, 72, 72);
+            }
+
+            
+
+            .loginFormSignInBut {
+                width: 100%;
+                height: 44px;
+                margin-top: 80px;
+                border-radius: 4px;
+                border: none;
+                outline: none;
+                color: white;
+                background-color: rgb(221, 5, 5);
+                font-size: 18px;
+                font-weight: 600;
+            }
+
+            .rememberMeNeedHelpCon {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 14px;
+
+                .rememberMeAndCheckBox {
+                    display: flex;
+                    align-items: center;
+                    color: white;
+                    margin-bottom: 10px;
+
+                    .checkBox {
+                        color: red;
+                    }
+                }
+                .needHelp {
+                    color: rgb(121, 117, 117);
+                    margin-top: -15px;
+                }
+            }
+            .loginWithFbCon {
+                display: flex;
+                align-items: center;
+                margin-bottom: 14px;
+                .fbIcon {
+                    color: white;
+                }
+                .loginWithFbTxt {
+                    color: rgb(121, 117, 117);
+                    font-size: 14px;
+                }
+            }
+
+            .newToNetflix {
+                color: rgb(121, 117, 117);
+            }
+
+            .signUpSpan {
+                color: white;
+            }
+            .lastInfo {
+                color: rgb(121, 117, 117);
+                margin-top: 10px;
+                font-size: 14px;
+            }
+
+            .learnMore {
+                color: rgb(31, 31, 244);
+            }
+        }
+    }
+}
