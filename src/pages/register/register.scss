@@ -12,11 +12,12 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        
 
         .registerPageTopRowLogo {
             width: 160px;
             height: 44px;
-            cursor: pointer;
+            
         }
 
         .registerLoginButton {
@@ -28,6 +29,7 @@
             border-radius: 4px;
             font-size: 18px;
             font-weight: 500;
+            cursor: pointer;
         }
     }
 
@@ -88,6 +90,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+           
         }
 
         .arrowForward {

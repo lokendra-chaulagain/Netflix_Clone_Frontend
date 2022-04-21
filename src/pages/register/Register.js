@@ -1,9 +1,27 @@
 import React from 'react'
 import "./register.scss"
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useState, useRef } from 'react';
+
 
 
 function Register() {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const emailRef = useRef()
+    const passwordRef = useRef()
+
+    const handleStart = () => {
+        setEmail(emailRef.current.value)
+    }
+
+    const handleFinish = () => {
+        setPassword(passwordRef.current.value)
+    }
+
+
+
     return (
         <div className='registerPage'>
             <div className="registerTopRow">
@@ -16,13 +34,27 @@ function Register() {
                 <span className='registerPageTxt2' >Watch anywhere. Cancel anytime.</span>
                 <span className='registerPageTxt3'>Ready to watch? Enter your email to create or restart your membership.</span>
 
-                <div className='registerPageInputCon'>
-                    <input className='registerPageEmailInput' type="email" placeholder='Email address' />
-                    <button className='registerPageGetStartedBut' >Get Started
-                        <ArrowForwardIosIcon className='arrowForward' />
 
-                    </button>
-                </div>
+                {
+                    !email ? (
+                        <div className='registerPageInputCon'>
+                            <input className='registerPageEmailInput' type="email" placeholder='Email address' ref={emailRef} />
+                            <button className='registerPageGetStartedBut' onClick={handleStart}  >
+                                Get Started
+                                <ArrowForwardIosIcon className='arrowForward' />
+                            </button>
+                        </div>
+                    ) : (
+                        <div className='registerPageInputCon'>
+                            <input className='registerPageEmailInput' type="password" placeholder='Password' ref={passwordRef} />
+                            <button className='registerPageGetStartedBut' onClick={handleFinish}  >
+                                Start
+                                <ArrowForwardIosIcon className='arrowForward' />
+                            </button>
+                        </div>
+                    )
+                }
+
             </div>
         </div>
     )
