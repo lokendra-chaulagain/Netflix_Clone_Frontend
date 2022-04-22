@@ -74,12 +74,14 @@
                 align-items: center;
                 justify-content: space-between;
                 font-size: 14px;
+                cursor: pointer;
 
                 .rememberMeAndCheckBox {
                     display: flex;
                     align-items: center;
                     color: white;
                     margin-bottom: 14px;
+                    margin-left: -10px;
 
                     .checkBox {
                         color: red;
@@ -89,6 +91,11 @@
                     color: rgb(121, 117, 117);
                     margin-top: -15px;
                     cursor: pointer;
+
+                    &:hover {
+                        color: rgb(31, 31, 244);
+                        font-weight: 500;
+                    }
                 }
             }
             .loginWithFbCon {
@@ -102,6 +109,10 @@
                 .loginWithFbTxt {
                     color: rgb(121, 117, 117);
                     font-size: 14px;
+
+                    &:hover {
+                        color: rgb(94, 92, 92);
+                    }
                 }
             }
 
@@ -112,6 +123,10 @@
             .signUpSpan {
                 color: white;
                 cursor: pointer;
+
+                &:hover {
+                    border-bottom: 1.5px solid grey;
+                }
             }
             .lastInfo {
                 color: rgb(121, 117, 117);
@@ -122,6 +137,11 @@
             .learnMore {
                 color: rgb(31, 31, 244);
                 cursor: pointer;
+
+                &:hover {
+                    border-bottom: 1.5px solid rgb(31, 31, 244);
+                    font-weight: 500;
+                }
             }
         }
     }
