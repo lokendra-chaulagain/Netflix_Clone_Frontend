@@ -58,7 +58,10 @@ const Navbar = () => {
 
             <div className="options">
               <span className="navNarLinks">Settings </span>
+              <Link to ={"/"} className="link">
               <span className="navNarLinks">Log out</span>
+              </Link>
+
             </div>
           </div>
         </div>
