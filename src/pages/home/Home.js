@@ -8,11 +8,9 @@ import axios from "axios";
 
 
 const Home = ({ type }) => {
-
   //for getting any random lists with query
   const [lists, setLists] = useState([])
   const [genere, setGenere] = useState('')
-
   useEffect(() => {
     const getRandomLists = async () => {
       try {
@@ -22,7 +20,7 @@ const Home = ({ type }) => {
           }
         }
         )
-        // console.log(res.data)
+        // console.log(res.data);
         setLists(res.data)
 
       } catch (error) {
@@ -30,10 +28,7 @@ const Home = ({ type }) => {
       }
     }
     getRandomLists()
-  }, [type, genere])
-
-
-  //
+  }, [genere, type])//whenever we change type or genere it will call useEffect and get random lists
 
 
 

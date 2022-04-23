@@ -40,8 +40,8 @@ export default function List({ list }) {
 
 
 
-                    {list.content.map((item, index) => (
-                        <ListItem index={index}  item={item}  />
+                    {list.content.map((item, i) => (
+                        <ListItem index={i}  item={item}  />
                     ))}
 
                     

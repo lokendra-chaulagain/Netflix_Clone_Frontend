@@ -5,13 +5,13 @@ import { useState, useEffect } from 'react'
 import axios from 'axios';
 
 function ListItem({ index, item }) {
-
     //hover effect
     const [isHovered, setIsHovered] = useState(false);
-    const [movie, setMovie] = useState({})
+    
 
 
     //
+    const [movie, setMovie] = useState({})
     useEffect(() => {
         const getMovie = async () => {
             try {
@@ -20,17 +20,15 @@ function ListItem({ index, item }) {
                         token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjFmOTMxM2RmMGYzZDYzNTg3NDA2MCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MDY3MTAwMCwiZXhwIjoxNjUxNTM1MDAwfQ.HOeFPw__H4xc80CJOX2bUcLuzex9W-tD1-ZiqZA5By8 "
                     }
                 })
+                // console.log(res.data);
                 setMovie(res.data)
-
+                
             } catch (error) {
                 console.log(error)
-
             }
         }
         getMovie()
-
-
-    }, [item])
+    }, [item])//whenever we change the item fire this useEffect
 
 
 
@@ -46,7 +44,7 @@ function ListItem({ index, item }) {
 
             {isHovered && (
                 <>
-                    <video src={movie.trailer} autoPlay={true} loop></video>
+                    <video src={movie.trailer} autoPlay={true} loop />
                     <div className="itemInfo">
                         <div className="icons">
                             <PlayArrow className='icon' />
@@ -57,7 +55,7 @@ function ListItem({ index, item }) {
 
                         <div className="itemInfoTop">
                             <span>{movie.duration}</span>
-                            <span className='ageLimit'>{movie.ageLimit} </span>
+                            <span className='ageLimit'>+{movie.ageLimit} </span>
                             <span>{movie.year} </span>
                         </div>
 
