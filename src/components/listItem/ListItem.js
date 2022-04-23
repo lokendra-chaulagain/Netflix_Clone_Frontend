@@ -3,6 +3,7 @@ import React from 'react'
 import "./listItem.scss"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 function ListItem({ index, item }) {
     //Hover effect
@@ -34,12 +35,20 @@ function ListItem({ index, item }) {
         <div className='listItem'
             style={{ left: isHovered && index * 225 - 50 }}
             onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-            <img src={movie.img} alt="" />
+
+            <Link to={{ pathname: "/watch", movie: movie }} >
+                <img src={movie.img} alt="" />
+            </Link>
+
+
 
 
             <div className="itemInfo">
                 <div className="icons">
-                    <PlayArrow className='icon' />
+
+                    <Link to={{ pathname: '/watch', movie: movie }}>
+                        <PlayArrow className='icon' />
+                    </Link>
                     <Add className='icon' />
                     <ThumbUpAltOutlined className='icon' />
                     <ThumbDownAltOutlined className='icon' />

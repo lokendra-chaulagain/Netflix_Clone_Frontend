@@ -1,8 +1,39 @@
+//featured component means main home section where background ma random auta movie ko paster aunxa ra testo detail pani aunxa
+
+
 import { InfoOutlined, PlayArrow } from "@mui/icons-material";
 import React from "react";
 import "./featured.scss";
+import { useState, useEffect } from "react"
+import axios from "axios";
+
+
 
 function Featured({ type }) {
+  //Random movie display garxau yeta feature section ma
+  const [content, setContent] = useState({})
+
+  useEffect(() => {
+    const getRandomContent = async () => {
+      try {
+        const res = await axios.get(`movies/random?type=${type}`, {
+          headers: {
+            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjFmOTMxM2RmMGYzZDYzNTg3NDA2MCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MDY3MTAwMCwiZXhwIjoxNjUxNTM1MDAwfQ.HOeFPw__H4xc80CJOX2bUcLuzex9W-tD1-ZiqZA5By8 "
+          }
+        })
+        console.log(res.data[0]);
+        setContent(res.data[0])
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getRandomContent()
+  }, [type])
+
+
+
+
   return (
     <div className="featured">
       {type && (
@@ -25,35 +56,30 @@ function Featured({ type }) {
         </div>
       )}
 
-      <img
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/87a1d9d8-a21d-4109-ba3a-c10d9055f5cf/72eb3c6f-1a6d-4d59-b295-6fdbe747416a/NP-en-20220307-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-        alt=""
-      />
+
+
+
+      <img src={content.img || "assets/image1.jpg"} alt="" />
 
       <div className="info">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1920px-Netflix_2015_logo.svg.png"
-          alt=""
-        />
-        <span className="desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-          deserunt reiciendis, aspernatur in distinctio tempora consectetur
-          repellendus nihil perspiciatis mollitia voluptate natus assumenda sint
-          aliquam culpa magnam temporibus provident dolore laudantium nulla
-          quibusdam reprehenderit? Consequuntur, eos culpa. Vitae sequi a
-          commodi laboriosam impedit cumque error quos minima quam, tenetur
-          velit!
-        </span>
+        <img src={content.imgTitle || "assets/logo.png"} alt="" />
+        <span className="desc">{content.desc || "This is temporary description not from database hai ta"}</span>
+
+
+
         <div className="buttons">
           <button className="play">
             <PlayArrow />
             <span>Play</span>
           </button>
+
           <button className="more">
             <InfoOutlined />
             <span>Info</span>
           </button>
         </div>
+
+
       </div>
     </div>
   );
