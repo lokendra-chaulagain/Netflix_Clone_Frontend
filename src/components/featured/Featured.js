@@ -1,12 +1,9 @@
-//featured component means main home section where background ma random auta movie ko paster aunxa ra testo detail pani aunxa
-
-
+//Featured component ma background image image wala title desc and button xan first ko home screen
 import { InfoOutlined, PlayArrow } from "@mui/icons-material";
 import React from "react";
 import "./featured.scss";
 import { useState, useEffect } from "react"
 import axios from "axios";
-
 
 
 function Featured({ type }) {
@@ -33,7 +30,6 @@ function Featured({ type }) {
 
 
 
-
   return (
     <div className="featured">
       {type && (
@@ -57,15 +53,11 @@ function Featured({ type }) {
       )}
 
 
-
-
       <img src={content.img || "assets/image1.jpg"} alt="" />
 
       <div className="info">
         <img src={content.imgTitle || "assets/logo.png"} alt="" />
         <span className="desc">{content.desc || "This is temporary description not from database hai ta"}</span>
-
-
 
         <div className="buttons">
           <button className="play">
@@ -78,7 +70,6 @@ function Featured({ type }) {
             <span>Info</span>
           </button>
         </div>
-
 
       </div>
     </div>
