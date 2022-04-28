@@ -5,21 +5,36 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
+
+
+
+
 function ListItem({ index, item }) {
-    //Hover effect
+    //taking index and item props from the list page
+
+
+
+
+    //Hover effect===================================
     const [isHovered, setIsHovered] = useState(false)
+    //===============================================
 
 
+
+
+    //FETCHING EVERY DETAILS FROM MOVIE(ITEM)===========================================================
+    //item is just an id 
     //For getting any random lists with query
     const [movie, setMovie] = useState({})
     useEffect(() => {
         const getMovie = async () => {
             try {
-                const res = await axios.get("movies/find/" + item, {
-                    headers: {
-                        token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjFmOTMxM2RmMGYzZDYzNTg3NDA2MCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MDY3MTAwMCwiZXhwIjoxNjUxNTM1MDAwfQ.HOeFPw__H4xc80CJOX2bUcLuzex9W-tD1-ZiqZA5By8 "
-                    }
-                })
+                const res = await axios.get("movies/find/" + item,
+                    {
+                        headers: {
+                            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjFmOTMxM2RmMGYzZDYzNTg3NDA2MCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MDY3MTAwMCwiZXhwIjoxNjUxNTM1MDAwfQ.HOeFPw__H4xc80CJOX2bUcLuzex9W-tD1-ZiqZA5By8 "
+                        }
+                    })
                 // console.log(res);
                 setMovie(res.data)
 
@@ -29,39 +44,56 @@ function ListItem({ index, item }) {
         }
         getMovie()
     }, [item])//whenever we change the item fire this useEffect
+    //=========================================================================================================
+
+
+
+
+
+
+
+
+
+
 
 
     return (
         <div className='listItem'
+            //   hover effect========================================================
             style={{ left: isHovered && index * 225 - 50 }}
             onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+            {/* =========================================================== */}
+
 
             <Link to={{ pathname: "/watch", movie: movie }} >
-                <img src={movie.img} alt="" />
+                <img src={movie.img || "assets/1.webp"} alt="" />
             </Link>
-
-
 
 
             <div className="itemInfo">
                 <div className="icons">
 
+                 {/* passing movie to watch */}
                     <Link to={{ pathname: '/watch', movie: movie }}>
                         <PlayArrow className='icon' />
                     </Link>
+
+
+
+
                     <Add className='icon' />
                     <ThumbUpAltOutlined className='icon' />
                     <ThumbDownAltOutlined className='icon' />
                 </div>
 
                 <div className="itemInfoTop">
-                    <span>{movie.duration || '2 hour 35 min'}</span>
+                    <span> {movie.duration || "2 hour 35 min"}</span>
                     <span className='ageLimit'>+{movie.ageLimit}</span>
                     <span>{movie.year}</span>
                 </div>
 
                 <div className="description">{movie.desc} </div>
-                <div className="genere">{movie.genere || 'genera:Action'}</div>
+                <div className="genere">{movie.genere || 'Action'}</div>
 
             </div>
         </div>

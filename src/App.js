@@ -19,16 +19,9 @@ const App = () => {
         <Route exact path="/" element={user ? <Home /> : <Register />} />
         <Route exact path="/login" element={!user ? <Login /> : <Home />} />
         <Route exact path="/register" element={!user ? <Register /> : <Home />} />
-
-        {/* If user is present then only these pages are accessible */}
-        {user && (
-          <>
-            <Route exact path="/movies" element={<Home type="movies" />} />
-            <Route exact path="/series" element={<Home type="series" />} />
-            <Route exact path="/watch" element={<Watch />} />
-          </>
-        )}
-        
+        <Route exact path="/movies" element={user ? <Home type="movies" /> : <Register />} />
+        <Route exact path="/series" element={user ? <Home type="series" /> : <Register />} />
+        <Route exact path="/watch" element={user ? <Watch /> : <Register />} />
       </Routes>
     </Router>
   </div>;
