@@ -2,9 +2,12 @@ import { InfoOutlined, PlayArrow } from "@mui/icons-material";
 import React from "react";
 import "./featured.scss";
 
-function Featured({ setGenreSelected, genreSelected }) {
+function Featured({ genreSelected, genreItems, setGenreSelected }) {
+  var index = Math.floor(Math.random() * genreItems?.length);
+
   return (
     <div className="featured">
+      <img className="featuredBgImage" src={genreItems[index]?.img} alt="" />
       <div className="category">
         <span>{genreSelected}</span>
         <select

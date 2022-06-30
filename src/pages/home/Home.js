@@ -10,6 +10,7 @@ import Horror from "../../components/horror/Horror";
 import Navbar from "../../components/navbar/Navbar";
 import Romance from "../../components/romance/Romance";
 import ScienceFiction from "../../components/scienceFiction/ScienceFiction";
+import SingleMovie from "../../components/singleMovie/SingleMovie";
 import Thriller from "../../components/thriller/Thriller";
 import Timer from "../../components/timer/Timer";
 import "./home.scss";
@@ -29,23 +30,46 @@ const Home = () => {
     fetchDataAccordingToGenre();
   }, [genreSelected]);
   console.log(genreItems);
+  console.log(genreSelected);
 
   return (
     <>
       {genreSelected ? (
         <>
-          <div className="home">
-            <Navbar />
-            <Featured setGenreSelected={setGenreSelected} />
+          <div className="home1">
+            <div className="home">
+              <Navbar />
+              <Featured
+                setGenreSelected={setGenreSelected}
+                genreSelected={genreSelected}
+                genreItems={genreItems}
+              />
+            </div>
+            <span className="singleMovieTitle">Genre : {genreSelected}</span>
+            <div className="singleMovieListContainer">
+              <SingleMovie />
+              <SingleMovie />
+              <SingleMovie />
+              <SingleMovie />
+              <SingleMovie />
+              <SingleMovie />
+              <SingleMovie />
+              <SingleMovie />
+              <SingleMovie />
+              <SingleMovie />
+            </div>
+            <Timer />
+            <Footer />
           </div>
-          <span>dfsiojidfjsfiofdsiojs</span>
-          <Timer />
         </>
       ) : (
         <>
           <div className="home">
             <Navbar />
-            <Featured setGenreSelected={setGenreSelected} />
+            <Featured
+              setGenreSelected={setGenreSelected}
+              genreItems={genreItems}
+            />
             <Adventure />
             <Crime />
             <Horror />
@@ -55,7 +79,7 @@ const Home = () => {
             <Animation />
             <Drama />
             <Timer />
-            <Footer/>
+            <Footer />
           </div>
         </>
       )}
