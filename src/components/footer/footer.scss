@@ -1,0 +1,149 @@
+.footer {
+  padding-left: 50px;
+  padding-right: 50px;
+  display: flex;
+
+  margin-bottom: 50px;
+  margin-top: 50px;
+
+  .footerCol1 {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    .footerLogo {
+      width: 100px;
+    }
+    .footerDesc {
+      color: #b4c2ca;
+      margin-top: 20px;
+      font-size: 17px;
+      line-height: 23px;
+    }
+  }
+
+  .footerCol2 {
+    flex: 0.5;
+    margin-left: 5%;
+
+    .col2Title {
+      color: #ffffff;
+      font-size: 18px;
+    }
+    .latestUploadHr {
+      background-color: #e50914;
+      color: #e50914;
+      height: 2px;
+      border: none;
+      width: 120px;
+      margin-top: 7px;
+    }
+
+    .col2Item {
+      margin-top: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      color: #b4c2ca;
+      cursor: pointer;
+      &:hover {
+        color: white;
+      }
+    }
+
+    .col2ItemUploadTime {
+      color: #7e7e7e;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+  }
+
+  .footerCol3 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .col3Title {
+      color: #ffffff;
+    }
+    .servicesHr {
+      background-color: #e50914;
+      color: #e50914;
+      height: 2px;
+      border: none;
+      width: 65px;
+      margin-top: 7px;
+      margin-bottom: 20px;
+    }
+
+    .col3Item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      color: #b4c2ca;
+      cursor: pointer;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  .footerCol4 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .col4Title {
+      color: #ffffff;
+    }
+    .GetInTouchHr {
+      background-color: #e50914;
+      color: #e50914;
+      height: 2px;
+      border: none;
+      width: 90px;
+      margin-top: 7px;
+      margin-bottom: 20px;
+    }
+    .col4Item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #b4c2ca;
+      cursor: pointer;
+
+      &:hover {
+        color: white;
+      }
+    }
+
+    .col4SocialMedia {
+      color: #b4c2ca;
+      display: flex;
+      gap: 10px;
+
+      .col4Icon {
+        font-size: 20px;
+        padding: 4px;
+        border: 1px solid white;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #e50914;
+          transition: all 0.3s ease;
+          color: white;
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+}
+
+.copyRightTxt {
+  color: #b4c2ca;
+  padding-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

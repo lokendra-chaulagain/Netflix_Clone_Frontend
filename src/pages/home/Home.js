@@ -5,6 +5,7 @@ import Animation from "../../components/animation/Animation";
 import Crime from "../../components/crime/Crime";
 import Drama from "../../components/drama/Drama";
 import Featured from "../../components/featured/Featured";
+import Footer from "../../components/footer/Footer";
 import Horror from "../../components/horror/Horror";
 import Navbar from "../../components/navbar/Navbar";
 import Romance from "../../components/romance/Romance";
@@ -54,6 +55,7 @@ const Home = () => {
             <Animation />
             <Drama />
             <Timer />
+            <Footer/>
           </div>
         </>
       )}
