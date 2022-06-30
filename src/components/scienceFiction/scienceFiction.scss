@@ -1,0 +1,45 @@
+.sflist {
+  width: 100%;
+  margin-top: 20px;
+
+  .sflistTitle {
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 50px;
+  }
+  .sfwrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .sfsliderArrow {
+      width: 50px;
+      height: 100%;
+      background-color: rgb(22, 22, 22, 0.5);
+      color: white;
+      position: absolute;
+      cursor: pointer;
+
+      &.sfleft {
+        left: 0;
+        z-index: 2;
+        // position: relative;
+        // left: 10px;
+      }
+
+      &.sfright {
+        right: 0;
+      }
+    }
+    .sfcontainer {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      margin-top: 10px;
+      margin-left: 50px;
+      transform: translateX(0px);
+      transition: all 1s ease;
+    }
+  }
+}

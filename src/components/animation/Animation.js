@@ -4,9 +4,9 @@ import {
 } from "@mui/icons-material";
 import { useRef, useState } from "react";
 import ListItem from "../listItem/ListItem";
-import "./list.scss";
+import "./animation.scss";
 
-export default function List() {
+export default function Animation() {
   const [isMoved, setIsMoved] = useState(false);
   const [slideNumber, setSlideNumber] = useState(0);
   const listRef = useRef();
@@ -25,21 +25,21 @@ export default function List() {
 
   return (
     <>
-      <div className="list">
-        <span className="listTitle">Adventure</span>
-        <div className="wrapper">
+      <div className="animationlist">
+        <span className="animationlistTitle">Animation</span>
+        <div className="animationwrapper">
           <ArrowBackIosOutlined
-            className="sliderArrow left"
+            className="animationsliderArrow animationleft"
             onClick={() => handleClick("left")}
             style={{ display: !isMoved && "none" }}
           />
 
-          <div className="container" ref={listRef}>
+          <div className="animationcontainer" ref={listRef}>
             <ListItem />
           </div>
 
           <ArrowForwardIosOutlined
-            className="sliderArrow right"
+            className="animationsliderArrow animationright"
             onClick={() => handleClick("right")}
           />
         </div>

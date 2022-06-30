@@ -1,0 +1,45 @@
+.hslist {
+  width: 100%;
+  margin-top: 20px;
+
+  .hslistTitle {
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 50px;
+  }
+  .hswrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .hssliderArrow {
+      width: 50px;
+      height: 100%;
+      background-color: rgb(22, 22, 22, 0.5);
+      color: white;
+      position: absolute;
+      cursor: pointer;
+
+      &.hsleft {
+        left: 0;
+        z-index: 2;
+        // position: relative;
+        // left: 10px;
+      }
+
+      &.hsright {
+        right: 0;
+      }
+    }
+    .hscontainer {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      margin-top: 10px;
+      margin-left: 50px;
+      transform: translateX(0px);
+      transition: all 1s ease;
+    }
+  }
+}

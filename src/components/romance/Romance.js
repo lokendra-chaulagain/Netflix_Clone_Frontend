@@ -4,9 +4,9 @@ import {
 } from "@mui/icons-material";
 import { useRef, useState } from "react";
 import ListItem from "../listItem/ListItem";
-import "./list.scss";
+import "./romance.scss";
 
-export default function List() {
+export default function Romance() {
   const [isMoved, setIsMoved] = useState(false);
   const [slideNumber, setSlideNumber] = useState(0);
   const listRef = useRef();
@@ -25,21 +25,21 @@ export default function List() {
 
   return (
     <>
-      <div className="list">
-        <span className="listTitle">Adventure</span>
-        <div className="wrapper">
+      <div className="rslist">
+        <span className="rslistTitle">Romance</span>
+        <div className="rswrapper">
           <ArrowBackIosOutlined
-            className="sliderArrow left"
+            className="rssliderArrow rsleft"
             onClick={() => handleClick("left")}
             style={{ display: !isMoved && "none" }}
           />
 
-          <div className="container" ref={listRef}>
+          <div className="rscontainer" ref={listRef}>
             <ListItem />
           </div>
 
           <ArrowForwardIosOutlined
-            className="sliderArrow right"
+            className="rssliderArrow rsright"
             onClick={() => handleClick("right")}
           />
         </div>

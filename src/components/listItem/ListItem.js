@@ -97,37 +97,41 @@ import React from "react";
 import "./listItem.scss";
 import { useState } from "react";
 
+
 function ListItem({ index, item }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
-      className="listItem"
-      style={{ left: isHovered && index * 225 - 50 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <img src="/assets/1.webp" alt="" />
+    
+      <div
+        className="listItem"
+        style={{ left: isHovered && index * 225 - 50 }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+       
+          <img src="/assets/1.webp" alt="" />
+    
+        <div className="itemInfo">
+          <div className="icons">
+            <PlayArrow className="icon" />
 
-      <div className="itemInfo">
-        <div className="icons">
-          <PlayArrow className="icon" />
+            <Add className="icon" />
+            <ThumbUpAltOutlined className="icon" />
+            <ThumbDownAltOutlined className="icon" />
+          </div>
 
-          <Add className="icon" />
-          <ThumbUpAltOutlined className="icon" />
-          <ThumbDownAltOutlined className="icon" />
+          <div className="itemInfoTop">
+            <span> 2 hour 35 min</span>
+            <span className="ageLimit">ageLimit</span>
+            <span>year</span>
+          </div>
+
+          <div className="description">des</div>
+          <div className="genere"> Action</div>
         </div>
-
-        <div className="itemInfoTop">
-          <span> 2 hour 35 min</span>
-          <span className="ageLimit">ageLimit</span>
-          <span>year</span>
-        </div>
-
-        <div className="description">des</div>
-        <div className="genere"> Action</div>
       </div>
-    </div>
+  
   );
 }
 
