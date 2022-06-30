@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Adventure from "../../components/adventure/Adventure";
 import Animation from "../../components/animation/Animation";
 import Crime from "../../components/crime/Crime";
@@ -29,8 +30,25 @@ const Home = () => {
     };
     fetchDataAccordingToGenre();
   }, [genreSelected]);
-  console.log(genreItems);
-  console.log(genreSelected);
+
+  //
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
+  console.log(path);
+
+  const [categoryItems, setCategoryItems] = useState([]);
+  useEffect(() => {
+    const fetchCategoryItems = async () => {
+      try {
+        const res = await axios.get(`/movies/category/${path}`);
+        setCategoryItems(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCategoryItems();
+  }, [path]);
+  console.log(categoryItems);
 
   return (
     <>

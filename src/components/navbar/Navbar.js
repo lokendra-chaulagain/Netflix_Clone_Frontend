@@ -21,13 +21,19 @@ const Navbar = () => {
             <span className="navNarLinks">HomePage</span>
           </Link>
 
-          <Link to={"/series"} className="link">
-            <span className="navNarLinks">Series</span>
-          </Link>
+          <span
+            className="navNarLinks"
+            onClick={() => window.location.replace("/series")}
+          >
+            Series
+          </span>
 
-          <Link to={"/movies"} className="link">
-            <span className="navNarLinks">Movies</span>
-          </Link>
+          <span
+            className="navNarLinks"
+            onClick={() => window.location.replace("/movies")}
+          >
+            Movies
+          </span>
 
           <Link to={"/trending"} className="link">
             <span className="navNarLinks">New and Popular</span>
