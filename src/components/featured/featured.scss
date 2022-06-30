@@ -1,6 +1,9 @@
 .featured {
   height: 90vh;
   position: relative;
+  overflow: hidden;
+  object-fit: cover;
+  background-image: url("https://fictionhorizon.com/wp-content/uploads/2021/10/619306-bg-full-netflix-grid-v2.desktop.jpg");
 
   .category {
     position: absolute;
