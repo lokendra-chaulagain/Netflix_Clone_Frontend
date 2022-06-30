@@ -36,6 +36,19 @@ export default function Crime() {
 
           <div className="cscontainer" ref={listRef}>
             <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
           </div>
 
           <ArrowForwardIosOutlined

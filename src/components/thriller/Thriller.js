@@ -36,6 +36,16 @@ export default function Thriller() {
 
           <div className="thrillercontainer" ref={listRef}>
             <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
           </div>
 
           <ArrowForwardIosOutlined

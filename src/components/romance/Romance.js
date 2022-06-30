@@ -36,6 +36,16 @@ export default function Romance() {
 
           <div className="rscontainer" ref={listRef}>
             <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
           </div>
 
           <ArrowForwardIosOutlined

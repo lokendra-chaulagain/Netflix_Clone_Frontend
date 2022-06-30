@@ -36,6 +36,15 @@ export default function ScienceFiction() {
 
           <div className="sfcontainer" ref={listRef}>
             <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
           </div>
 
           <ArrowForwardIosOutlined

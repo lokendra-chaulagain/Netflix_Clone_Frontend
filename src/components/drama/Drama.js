@@ -36,6 +36,15 @@ export default function Drama() {
 
           <div className="dramacontainer" ref={listRef}>
             <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
+            <ListItem />
           </div>
 
           <ArrowForwardIosOutlined
