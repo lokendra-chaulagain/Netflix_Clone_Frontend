@@ -6,6 +6,7 @@ import {
 } from "@mui/icons-material";
 import React from "react";
 import "./listItem.scss";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useState } from "react";
 
 function ListItem({ index }) {
@@ -19,6 +20,9 @@ function ListItem({ index }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <span className="frontMovieName">Movie Name</span>
+      <button className="itemPlayBut">
+        <PlayArrowIcon className="itemPlayIcon" /> Play Now
+      </button>
       <img src="/assets/1.webp" alt="" />
 
       <div className="itemInfo">

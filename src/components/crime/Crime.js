@@ -26,7 +26,7 @@ export default function Crime() {
   return (
     <>
       <div className="cslist">
-        <span className="cslistTitle">Crime</span>
+        <span className="cslistTitle">Crimes and Scandals</span>
         <div className="cswrapper">
           <ArrowBackIosOutlined
             className="cssliderArrow csleft"

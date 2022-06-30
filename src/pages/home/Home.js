@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Adventure from "../../components/adventure/Adventure";
 import Animation from "../../components/animation/Animation";
 import Crime from "../../components/crime/Crime";
-import Documentary from "../../components/documentary/Documentary";
 import Drama from "../../components/drama/Drama";
 import Featured from "../../components/featured/Featured";
 import Horror from "../../components/horror/Horror";
@@ -11,6 +10,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Romance from "../../components/romance/Romance";
 import ScienceFiction from "../../components/scienceFiction/ScienceFiction";
 import Thriller from "../../components/thriller/Thriller";
+import Timer from "../../components/timer/Timer";
 import "./home.scss";
 
 const Home = () => {
@@ -30,19 +30,34 @@ const Home = () => {
   console.log(genreItems);
 
   return (
-    <div className="home">
-      <Navbar />
-      <Featured setGenreSelected={setGenreSelected} />
-      <Adventure />
-      <Crime />
-      <Horror />
-      <Romance />
-      <ScienceFiction />
-      <Thriller />
-      <Animation />
-      <Drama />
-      <Documentary />
-    </div>
+    <>
+      {genreSelected ? (
+        <>
+          <div className="home">
+            <Navbar />
+            <Featured setGenreSelected={setGenreSelected} />
+          </div>
+          <span>dfsiojidfjsfiofdsiojs</span>
+          <Timer />
+        </>
+      ) : (
+        <>
+          <div className="home">
+            <Navbar />
+            <Featured setGenreSelected={setGenreSelected} />
+            <Adventure />
+            <Crime />
+            <Horror />
+            <Romance />
+            <ScienceFiction />
+            <Thriller />
+            <Animation />
+            <Drama />
+            <Timer />
+          </div>
+        </>
+      )}
+    </>
   );
 };
 

@@ -26,7 +26,7 @@ export default function Animation() {
   return (
     <>
       <div className="animationlist">
-        <span className="animationlistTitle">Animation</span>
+        <span className="animationlistTitle">Animation and Cartoons</span>
         <div className="animationwrapper">
           <ArrowBackIosOutlined
             className="animationsliderArrow animationleft"

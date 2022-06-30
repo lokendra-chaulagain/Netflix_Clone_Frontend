@@ -12,7 +12,12 @@ function Featured({ setGenreSelected, genreSelected }) {
           id="genere"
           onChange={(e) => setGenreSelected(e.target.value)}
         >
+          {/* <option disabled  selected={true}>Genera</option> */}
+          {/* <option disabled selected={true}>
+          Genera
+                  </option> */}
           <option>Genera</option>
+
           <option value="Adventure">Adventure</option>
           <option value="Crime">Crime</option>
           <option value="Fantasy">Fantasy</option>

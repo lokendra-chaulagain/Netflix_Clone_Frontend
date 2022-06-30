@@ -1,0 +1,85 @@
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+
+  .timerLogo {
+    width: 400px;
+  }
+  .stayTune {
+    font-size: 34px;
+    color: #ffffff;
+    font-weight: 500;
+    margin-top: 25px;
+  }
+
+  .weAreWorking {
+    font-size: 18px;
+    color: #b4c2ca;
+    font-weight: 500;
+    margin-top: 15px;
+  }
+
+  .fourTimerDiv {
+    display: flex;
+    gap: 30px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+
+    .singleTimerDiv {
+      background-color: #191919;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 90px;
+      gap: 20px;
+
+      .timeRemaining {
+        color: #e50914;
+        font-size: 52px;
+      }
+
+      .timeRemainingTxt {
+        color: #c4c4c3;
+      }
+    }
+  }
+
+  .registerPageInputCon {
+    width: 50%;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 50px;
+
+    .registerPageEmailInput {
+      width: 78%;
+      height: 44px;
+      border-radius: 2px;
+      border: none;
+      outline: none;
+      padding-left: 10px;
+    }
+
+    .registerPageGetStartedBut {
+      width: 22%;
+      height: 44px;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      margin-left: 1px;
+      background-color: rgb(221, 5, 5);
+      font-weight: 500;
+      color: white;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arrowForward {
+      margin-left: 6px;
+    }
+  }
+}

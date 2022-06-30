@@ -26,7 +26,7 @@ export default function Romance() {
   return (
     <>
       <div className="rslist">
-        <span className="rslistTitle">Romance</span>
+        <span className="rslistTitle">Romance and Love</span>
         <div className="rswrapper">
           <ArrowBackIosOutlined
             className="rssliderArrow rsleft"
