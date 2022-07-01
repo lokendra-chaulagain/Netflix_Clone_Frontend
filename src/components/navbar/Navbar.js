@@ -18,31 +18,35 @@ const Navbar = () => {
           <img src="/assets/logo.png" alt="" />
 
           <Link to={"/"} className="link">
-            <span className="navNarLinks" onClick={() => window.location.replace("/")} >Home</span>
+            <span
+              className="navNarLinks"
+              onClick={() => window.location.replace("/")}
+            >
+              Home
+            </span>
           </Link>
 
           <Link to={"/series"} className="link">
-          <span
-            className="navNarLinks"
-            // onClick={() => window.location.replace("/series")}
-          >
-            Series
-          </span>
+            <span
+              className="navNarLinks"
+              // onClick={() => window.location.replace("/series")}
+            >
+              Series
+            </span>
           </Link>
 
           <Link to={"/movies"} className="link">
-          <span
-            className="navNarLinks"
-            // onClick={() => window.location.replace("/movies")}
-          >
-            Movies
-          </span>
+            <span
+              className="navNarLinks"
+              // onClick={() => window.location.replace("/movies")}
+            >
+              Movies
+            </span>
           </Link>
 
           <Link to={"/kids"} className="link">
             <span className="navNarLinks">KID</span>
           </Link>
-
 
           <Link to={"/latest"} className="link">
             <span className="navNarLinks">Latest</span>
@@ -51,12 +55,15 @@ const Navbar = () => {
           <Link to={"/watchLater"} className="link">
             <span className="navNarLinks">Watch Later</span>
           </Link>
+
+          <Link to={"/dashboard"} className="link">
+            <span className="navNarLinks">Dashboard</span>
+          </Link>
         </div>
 
         <div className="right">
           <Search className="icon" />
 
-         
           <Notifications className="icon" />
           <img className="nabBarProfile" src="assets/profile.jpg" alt="" />
 

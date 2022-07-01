@@ -1,0 +1,90 @@
+.dw {
+  background-color: var(--main-color);
+  padding-bottom: 100px;
+  padding-left: 60px;
+  padding-right: 60px;
+  
+
+
+  .dashBoardPage {
+    background-color: var(--main-color);
+    // padding-left: 60px;
+    // padding-right: 60px;
+    padding-top: 70px;
+    display: flex;
+
+    gap: 100px;
+    justify-content: center;
+    padding-bottom: 50px;
+
+    .dashCol1 {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+
+      .dashCol1Item {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+
+        .col1IItemSpan {
+          font-size: 18px;
+          color: white;
+        }
+        .col1ItemInput {
+          width: 400px;
+          height: 40px;
+          outline: none;
+          border-radius: 2px;
+          border: none;
+          padding-left: 7px;
+          font-size: 18px;
+        }
+
+        .col1ItemInputDesc {
+          min-height: 100px;
+        }
+      }
+    }
+
+    .dashCol2 {
+      display: flex;
+      flex-direction: column;
+      // gap: 50px;
+      margin-top: -50px;
+
+      .co2ItemSpan {
+        font-size: 20px;
+        color: white;
+        margin-top: 50px;
+      }
+
+      .thumbnailDiv {
+        margin-top: 7px;
+        gap: 20px;
+        display: flex;
+        align-items: center;
+
+        .thumbNailImg {
+          height: 200px;
+          width: 300px;
+          object-fit: cover;
+          margin-top: 7px;
+        }
+        .dashboardIcon {
+          color: #b4c2ca;
+          cursor: pointer;
+          font-size: 60px;
+        }
+      }
+    }
+  }
+  .dashboardUploadBut {
+    height: 40px;
+    width: 200px;
+    margin-left: 40%;
+    font-size: 18px;
+    font-weight:600;
+    cursor: pointer;
+  }
+}

@@ -5,6 +5,7 @@ import Watch from "./pages/watch/Watch";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route exact path="/kids" element={<Home />} />
           <Route exact path="/latest" element={<Home />} />
           <Route exact path="/watchLater" element={<Home />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/watch" element={<Watch />} />
         </Routes>
       </Router>
