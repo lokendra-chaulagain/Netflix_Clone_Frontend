@@ -7,29 +7,19 @@ import Register from "./pages/register/Register";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
-  const user = true;
   return (
     <div>
       <Router>
         <Routes>
-          <Route exact path="/" element={user ? <Home /> : <Register />} />
-          <Route exact path="/login" element={!user ? <Login /> : <Home />} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
-          <Route
-            exact
-            path="/movies"
-            element={user ? <Home type="movies" /> : <Register />}
-          />
-          <Route
-            exact
-            path="/series"
-            element={user ? <Home type="series" /> : <Register />}
-          />
-          <Route
-            exact
-            path="/watch"
-            element={user ? <Watch /> : <Register />}
-          />
+          <Route exact path="/movies" element={<Home />} />
+          <Route exact path="/series" element={<Home />} />
+          <Route exact path="/kids" element={<Home />} />
+          <Route exact path="/latest" element={<Home />} />
+          <Route exact path="/watchLater" element={<Home />} />
+          <Route exact path="/watch" element={<Watch />} />
         </Routes>
       </Router>
     </div>

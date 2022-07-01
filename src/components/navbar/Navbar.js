@@ -18,39 +18,45 @@ const Navbar = () => {
           <img src="/assets/logo.png" alt="" />
 
           <Link to={"/"} className="link">
-            <span className="navNarLinks">HomePage</span>
+            <span className="navNarLinks" onClick={() => window.location.replace("/")} >Home</span>
           </Link>
 
+          <Link to={"/series"} className="link">
           <span
             className="navNarLinks"
-            onClick={() => window.location.replace("/series")}
+            // onClick={() => window.location.replace("/series")}
           >
             Series
           </span>
+          </Link>
 
+          <Link to={"/movies"} className="link">
           <span
             className="navNarLinks"
-            onClick={() => window.location.replace("/movies")}
+            // onClick={() => window.location.replace("/movies")}
           >
             Movies
           </span>
-
-          <Link to={"/trending"} className="link">
-            <span className="navNarLinks">New and Popular</span>
           </Link>
 
-          <Link to={"/myList"} className="link">
-            <span className="navNarLinks">My LIst</span>
+          <Link to={"/kids"} className="link">
+            <span className="navNarLinks">KID</span>
+          </Link>
+
+
+          <Link to={"/latest"} className="link">
+            <span className="navNarLinks">Latest</span>
+          </Link>
+
+          <Link to={"/watchLater"} className="link">
+            <span className="navNarLinks">Watch Later</span>
           </Link>
         </div>
 
         <div className="right">
           <Search className="icon" />
 
-          <Link to={"/"} className="link">
-            <span className="navBarKid">KID</span>
-          </Link>
-
+         
           <Notifications className="icon" />
           <img className="nabBarProfile" src="assets/profile.jpg" alt="" />
 

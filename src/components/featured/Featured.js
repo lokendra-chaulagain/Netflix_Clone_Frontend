@@ -1,13 +1,37 @@
 import { InfoOutlined, PlayArrow } from "@mui/icons-material";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import "./featured.scss";
 
 function Featured({ genreSelected, genreItems, setGenreSelected }) {
   var index = Math.floor(Math.random() * genreItems?.length);
 
+  //All series and movies
+  const [allSeriesMovies, setAllSeriesMovies] = useState([]);
+  useEffect(() => {
+    const fetchAllMoviesAndSeries = async () => {
+      try {
+        const res = await axios.get("/movies/all");
+        setAllSeriesMovies(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllMoviesAndSeries();
+  }, []);
+  var index1 = Math.floor(Math.random() * allSeriesMovies.length);
+
   return (
     <div className="featured">
-      <img className="featuredBgImage" src={genreItems[index]?.img} alt="" />
+      {genreSelected === undefined ? (
+        <img
+          className="featuredBgImage"
+          src={allSeriesMovies[index1]?.img}
+          alt=""
+        />
+      ) : (
+        <img className="featuredBgImage" src={genreItems[index]?.img} alt="" />
+      )}
       <div className="category">
         <span>{genreSelected}</span>
         <select
@@ -15,11 +39,9 @@ function Featured({ genreSelected, genreItems, setGenreSelected }) {
           id="genere"
           onChange={(e) => setGenreSelected(e.target.value)}
         >
-          {/* <option disabled  selected={true}>Genera</option> */}
-          {/* <option disabled selected={true}>
-          Genera
-                  </option> */}
-          <option>Genera</option>
+          <option disabled selected={true}>
+            Genra
+          </option>
 
           <option value="Adventure">Adventure</option>
           <option value="Crime">Crime</option>

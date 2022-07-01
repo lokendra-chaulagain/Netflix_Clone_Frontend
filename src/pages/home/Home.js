@@ -88,14 +88,39 @@ const Home = () => {
               setGenreSelected={setGenreSelected}
               genreItems={genreItems}
             />
-            <Adventure />
-            <Crime />
-            <Horror />
-            <Romance />
-            <ScienceFiction />
-            <Thriller />
-            <Animation />
-            <Drama />
+            {path && (
+              <span className="singleMovieTitle">Category : {path}</span>
+            )}
+
+            {path ? (
+              <div className="singleMovieListContainer">
+                <SingleMovie />
+                <SingleMovie />
+                <SingleMovie />
+                <SingleMovie />
+                <SingleMovie />
+                <SingleMovie />
+                <SingleMovie />
+                <SingleMovie />
+                <SingleMovie />
+                <SingleMovie />
+                <SingleMovie />
+                <SingleMovie />
+                <SingleMovie />
+              </div>
+            ) : (
+              <>
+                <Adventure />
+                <Crime />
+                <Horror />
+                <Romance />
+                <ScienceFiction />
+                <Thriller />
+                <Animation />
+                <Drama />
+              </>
+            )}
+
             <Timer />
             <Footer />
           </div>
