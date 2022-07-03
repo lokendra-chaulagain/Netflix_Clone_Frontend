@@ -1,36 +1,27 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./dashboard.scss";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 import axios from "axios";
 import storage from "../../firebase";
-// import { createMovie } from "../../context/movieContext/apiCalls";
-// import { MovieContext } from "../../context/movieContext/MovieContext";
 
 function Dashboard() {
-  const [movie, setMovie] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [description, setDescription] = useState(null);
-  const [genre, setGenre] = useState(null);
-  const [category, setCategory] = useState(null);
-  const [releasedYear, setReleasedYear] = useState(null);
-  const [ageLimit, setAgeLimit] = useState(null);
-  const [duration, setDuration] = useState(null);
+  const [movie, setMovie] = useState();
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [genre, setGenre] = useState("");
+  const [category, setCategory] = useState("null");
+  const [releasedYear, setReleasedYear] = useState("");
+  const [ageLimit, setAgeLimit] = useState("");
+  const [duration, setDuration] = useState("");
   const [thumbnail, setThumbnail] = useState(null);
   const [trailer, setTrailer] = useState(null);
   const [video, setVideo] = useState(null);
   const [uploaded, setUploaded] = useState(0);
 
-  // const { dispatch } = useContext(MovieContext);
-
-  // const handleChange = (e) => {
-  //   const value = e.target.value;
-  //   setMovie({ ...movie, [e.target.name]: value });
-  // };
-
   const upload = (items) => {
     items.forEach((item) => {
-      const fileName = new Date().getTime() + item.label + item.file?.name;
+      const fileName = new Date().getTime() + item.label + item.file.name;
       const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
       uploadTask.on(
         "state_changed",
@@ -61,7 +52,6 @@ function Dashboard() {
       { file: trailer, label: "trailer" },
       { file: video, label: "video" },
     ]);
-    // createMovie(movie, dispatch);
   };
 
   const handleSubmit = (e) => {
@@ -69,15 +59,15 @@ function Dashboard() {
     try {
       axios.post("/movies/create", {
         title,
-        description,
+        desc,
         genre,
         category,
         releasedYear,
         ageLimit,
         duration,
-        thumbnail:movie.thumbnail,
-        trailer:movie.trailer,
-        video:movie.video,
+        thumbnail: movie.thumbnail,
+        trailer: movie.trailer,
+        video: movie.video,
       });
     } catch (error) {
       console.log(error);
@@ -104,7 +94,7 @@ function Dashboard() {
               className="col1ItemInput col1ItemInputDesc"
               type="text"
               name="description"
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => setDesc(e.target.value)}
             />
           </div>
 
@@ -115,7 +105,6 @@ function Dashboard() {
               className="col1ItemInput"
               name="genre"
               id=""
-              // onChange={handleChange}
               onChange={(e) => setGenre(e.target.value)}
             >
               <option value="" disabled selected={true}>
@@ -186,7 +175,6 @@ function Dashboard() {
               minLength={4}
               type="number"
               defaultValue={1999}
-              // onChange={handleChange}
               onChange={(e) => setReleasedYear(e.target.value)}
             />
           </div>
@@ -197,7 +185,6 @@ function Dashboard() {
               className="col1ItemInput"
               name="ageLimit"
               id=""
-              // onChange={handleChange}
               onChange={(e) => setAgeLimit(e.target.value)}
             >
               <option value="" disabled selected={true}>
@@ -215,7 +202,6 @@ function Dashboard() {
               className="col1ItemInput"
               type="text"
               name="duration"
-              // onChange={handleChange}
               onChange={(e) => setDuration(e.target.value)}
             />
           </div>
@@ -268,8 +254,7 @@ function Dashboard() {
         </button>
       ) : (
         <button className="dashboardUploadBut" onClick={handleUpload}>
-          {" "}
-          upload{" "}
+          upload
         </button>
       )}
     </form>
