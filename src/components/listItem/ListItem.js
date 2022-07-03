@@ -18,6 +18,7 @@ function ListItem({
   crime,
   thriller,
   scienceFiction,
+  romance,
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -220,6 +221,34 @@ function ListItem({
 
             <div className="description">{scienceFiction?.desc}</div>
             <div className="genere"> {scienceFiction?.genre}</div>
+          </div>
+        </>
+      )}
+
+      {romance && (
+        <>
+          <span className="frontMovieName">{romance?.title}</span>
+          <button className="itemPlayBut">
+            <PlayArrowIcon className="itemPlayIcon" /> Play Now
+          </button>
+          <img src={romance?.thumbnail} alt="" />
+          <div className="itemInfo">
+            <div className="icons">
+              <PlayArrow className="icon" />
+
+              <Add className="icon" />
+              <ThumbUpAltOutlined className="icon" />
+              <ThumbDownAltOutlined className="icon" />
+            </div>
+
+            <div className="itemInfoTop">
+              <span>{romance?.duration}</span>
+              <span className="ageLimit">{romance?.ageLimit}</span>
+              <span>{romance?.releasedYear}</span>
+            </div>
+
+            <div className="description">{romance?.desc}</div>
+            <div className="genere"> {romance?.genre}</div>
           </div>
         </>
       )}

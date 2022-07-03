@@ -3,6 +3,7 @@ import {
   ArrowForwardIosOutlined,
 } from "@mui/icons-material";
 import { useRef, useState } from "react";
+import { useAPI } from "../../context/getContext";
 import ListItem from "../listItem/ListItem";
 import "./romance.scss";
 
@@ -23,6 +24,9 @@ export default function Romance() {
     }
   };
 
+  const { allRomance } = useAPI();
+  console.log(allRomance);
+
   return (
     <>
       <div className="rslist">
@@ -35,17 +39,9 @@ export default function Romance() {
           />
 
           <div className="rscontainer" ref={listRef}>
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
+            {allRomance.map((romance, i) => (
+              <ListItem index={i} key={i} romance={romance} />
+            ))}
           </div>
 
           <ArrowForwardIosOutlined
