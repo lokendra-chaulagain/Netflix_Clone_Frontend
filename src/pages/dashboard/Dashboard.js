@@ -1,151 +1,91 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./dashboard.scss";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
-import app from "../../firebase";
 import axios from "axios";
+import storage from "../../firebase";
+// import { createMovie } from "../../context/movieContext/apiCalls";
+// import { MovieContext } from "../../context/movieContext/MovieContext";
 
 function Dashboard() {
   const [movie, setMovie] = useState(null);
-  //   const [title, setTitle] = useState(null);
-  //   const [description, setDescription] = useState(null);
-  //   const [genre, setGenre] = useState(null);
-  //   const [category, setCategory] = useState(null);
-  //   const [releasedYear, setReleasedYear] = useState(null);
-  //   const [ageLimit, setAgeLimit] = useState(null);
-  //   const [duration, setDuration] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [genre, setGenre] = useState(null);
+  const [category, setCategory] = useState(null);
+  const [releasedYear, setReleasedYear] = useState(null);
+  const [ageLimit, setAgeLimit] = useState(null);
+  const [duration, setDuration] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
   const [trailer, setTrailer] = useState(null);
   const [video, setVideo] = useState(null);
+  const [uploaded, setUploaded] = useState(0);
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setMovie({ ...movie, [e.target.name]: value });
+  // const { dispatch } = useContext(MovieContext);
+
+  // const handleChange = (e) => {
+  //   const value = e.target.value;
+  //   setMovie({ ...movie, [e.target.name]: value });
+  // };
+
+  const upload = (items) => {
+    items.forEach((item) => {
+      const fileName = new Date().getTime() + item.label + item.file?.name;
+      const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+            setMovie((prev) => {
+              return { ...prev, [item.label]: url };
+            });
+            setUploaded((prev) => prev + 1);
+          });
+        }
+      );
+    });
   };
 
-  const handleSubmit = async (e) => {
+  const handleUpload = (e) => {
     e.preventDefault();
-    // const fileName1 = new Date().getTime() + thumbnail?.name;
-    // const fileName2 = new Date().getTime() + trailer?.name;
-    const fileName3 = new Date().getTime() + video.name;
-    // const storage1 = getStorage(app);
-    // const storage2 = getStorage(app);
-    const storage3 = getStorage(app);
-    // const storageRef1 = ref(storage1, fileName1);
-    // const storageRef2 = ref(storage2, fileName2);
-    const storageRef3 = ref(storage3, fileName3);
-    // const uploadTask1 = uploadBytesResumable(storageRef1, thumbnail);
-    // const uploadTask2 = uploadBytesResumable(storageRef2, trailer);
-    const uploadTask3 = uploadBytesResumable(storageRef3, video);
+    upload([
+      { file: thumbnail, label: "thumbnail" },
+      { file: trailer, label: "trailer" },
+      { file: video, label: "video" },
+    ]);
+    // createMovie(movie, dispatch);
+  };
 
-    //Thumbnail
-    // uploadTask1.on(
-    //   "state_changed",
-    //   (snapshot) => {
-    //     const progress =
-    //       (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
-    //     console.log("Upload is " + progress + "% done");
-    //     switch (snapshot.state) {
-    //       case "paused":
-    //         console.log("Upload is paused");
-    //         break;
-    //       case "running":
-    //         console.log("Upload is running");
-    //         break;
-    //       default:
-    //     }
-    //   },
-    //   (error) => {},
-    //   () => {
-    //     getDownloadURL(uploadTask1.snapshot.ref).then((downloadURL1) => {
-    //       setThumbnail(downloadURL1);
-    //     });
-    //   }
-    // );
-    // const a =thumbnail;
-    
-
-    //Trailer
-    // uploadTask2.on(
-    //   "state_changed",
-    //   (snapshot) => {
-    //     const progress =
-    //       (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
-    //     console.log("Upload is " + progress + "% done");
-    //     switch (snapshot.state) {
-    //       case "paused":
-    //         console.log("Upload is paused");
-    //         break;
-    //       case "running":
-    //         console.log("Upload is running");
-    //         break;
-    //       default:
-    //     }
-    //   },
-    //   (error) => {},
-    //   () => {
-    //     getDownloadURL(uploadTask2.snapshot.ref).then((downloadURL2) => {
-    //       setTrailer(downloadURL2);
-    //     });
-    //   }
-    // );
-    // const b=trailer;
-
-    //Video
-    uploadTask3.on(
-      "state_changed",
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
-        console.log("Upload is " + progress + "% done");
-        switch (snapshot.state) {
-          case "paused":
-            console.log("Upload is paused");
-            break;
-          case "running":
-            console.log("Upload is running");
-            break;
-          default:
-        }
-      },
-      (error) => {},
-      () => {
-        getDownloadURL(uploadTask3.snapshot.ref).then((downloadURL3) => {
-          setVideo(downloadURL3);
-        //   const c=video;
-          try {
-            axios.post("/movies/create", {
-            //   title: movie.title,
-            //   description: movie.description,
-            //   genre: movie.genre,
-            //   category: movie.category,
-            //   releasedYear: movie.releasedYear,
-            //   ageLimit: movie.ageLimit,
-            //   duration: movie.duration,
-            //   thumbnail: a,
-            //   trailer: b,
-              video: downloadURL3,
-            });
-          } catch (error) {
-            console.log(error);
-          }
-        });
-      }
-    );
-   
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    try {
+      axios.post("/movies/create", {
+        title,
+        description,
+        genre,
+        category,
+        releasedYear,
+        ageLimit,
+        duration,
+        thumbnail:movie.thumbnail,
+        trailer:movie.trailer,
+        video:movie.video,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <form className="dw" onSubmit={handleSubmit}>
+    <form className="dw">
       <div className="dashBoardPage">
         <div className="dashCol1">
           <div className="dashCol1Item">
@@ -154,7 +94,7 @@ function Dashboard() {
               className="col1ItemInput"
               type="text"
               name="title"
-              onChange={handleChange}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
 
@@ -164,7 +104,7 @@ function Dashboard() {
               className="col1ItemInput col1ItemInputDesc"
               type="text"
               name="description"
-              onChange={handleChange}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
 
@@ -175,7 +115,8 @@ function Dashboard() {
               className="col1ItemInput"
               name="genre"
               id=""
-              onChange={handleChange}
+              // onChange={handleChange}
+              onChange={(e) => setGenre(e.target.value)}
             >
               <option value="" disabled selected={true}>
                 Select
@@ -223,7 +164,7 @@ function Dashboard() {
               className="col1ItemInput"
               name="category"
               id=""
-              onChange={handleChange}
+              onChange={(e) => setCategory(e.target.value)}
             >
               <option value="" disabled selected={true}>
                 Select
@@ -245,7 +186,8 @@ function Dashboard() {
               minLength={4}
               type="number"
               defaultValue={1999}
-              onChange={handleChange}
+              // onChange={handleChange}
+              onChange={(e) => setReleasedYear(e.target.value)}
             />
           </div>
 
@@ -255,7 +197,8 @@ function Dashboard() {
               className="col1ItemInput"
               name="ageLimit"
               id=""
-              onChange={handleChange}
+              // onChange={handleChange}
+              onChange={(e) => setAgeLimit(e.target.value)}
             >
               <option value="" disabled selected={true}>
                 Select
@@ -272,7 +215,8 @@ function Dashboard() {
               className="col1ItemInput"
               type="text"
               name="duration"
-              onChange={handleChange}
+              // onChange={handleChange}
+              onChange={(e) => setDuration(e.target.value)}
             />
           </div>
         </div>
@@ -318,9 +262,16 @@ function Dashboard() {
           </label>
         </div>
       </div>
-      <button className="dashboardUploadBut" type="submit">
-        Upload
-      </button>
+      {uploaded === 3 ? (
+        <button className="dashboardUploadBut" onClick={handleSubmit}>
+          create
+        </button>
+      ) : (
+        <button className="dashboardUploadBut" onClick={handleUpload}>
+          {" "}
+          upload{" "}
+        </button>
+      )}
     </form>
   );
 }
