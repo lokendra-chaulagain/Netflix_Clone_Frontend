@@ -10,6 +10,10 @@ export function AllSeriesMoviesContextProvider({ children }) {
   const [allHorror, setAllHorror] = useState([]);
   const [allDocumentary, setAllDocumentary] = useState([]);
   const [allAnimation, setAllAnimation] = useState([]);
+  const [allScienceFiction, setAllScienceFiction] = useState([]);
+  const [allCrime, setAllCrime] = useState([]);
+  const [allThriller, setAllThriller] = useState([]);
+
   useEffect(() => {
     const fetchAllMoviesSeries = async () => {
       try {
@@ -24,13 +28,25 @@ export function AllSeriesMoviesContextProvider({ children }) {
 
         const res4 = await axios.get("/movies/genre/Animation");
         setAllAnimation(res4.data);
+
+        const re5 = await axios.get("/movies/genre/Science-Fiction");
+        setAllScienceFiction(re5.data);
+
+        const res6 = await axios.get("/movies/genre/Crime");
+        setAllCrime(res6.data);
+
+        const res7 = await axios.get("/movies/genre/Thriller");
+        setAllThriller(res7.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchAllMoviesSeries();
   }, []);
-  console.log(allAnimation);
+
+  console.log(allCrime);
+  console.log(allScienceFiction);
+  console.log(allThriller);
 
   return (
     <AllSeriesMoviesContext.Provider
@@ -39,6 +55,9 @@ export function AllSeriesMoviesContextProvider({ children }) {
         allHorror,
         allDocumentary,
         allAnimation,
+        allScienceFiction,
+        allCrime,
+        allThriller,
       }}
     >
       {children}

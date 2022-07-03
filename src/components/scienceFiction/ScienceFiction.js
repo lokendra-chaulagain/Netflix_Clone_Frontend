@@ -3,6 +3,7 @@ import {
   ArrowForwardIosOutlined,
 } from "@mui/icons-material";
 import { useRef, useState } from "react";
+import { useAPI } from "../../context/getContext";
 import ListItem from "../listItem/ListItem";
 import "./scienceFiction.scss";
 
@@ -23,6 +24,8 @@ export default function ScienceFiction() {
     }
   };
 
+  const { allScienceFiction } = useAPI();
+
   return (
     <>
       <div className="sflist">
@@ -35,16 +38,9 @@ export default function ScienceFiction() {
           />
 
           <div className="sfcontainer" ref={listRef}>
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
+            {allScienceFiction.map((scienceFiction, i) => (
+              <ListItem key={i} index={i} scienceFiction={scienceFiction} />
+            ))}
           </div>
 
           <ArrowForwardIosOutlined

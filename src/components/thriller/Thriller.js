@@ -3,6 +3,7 @@ import {
   ArrowForwardIosOutlined,
 } from "@mui/icons-material";
 import { useRef, useState } from "react";
+import { useAPI } from "../../context/getContext";
 import ListItem from "../listItem/ListItem";
 import "./thriller.scss";
 
@@ -23,6 +24,9 @@ export default function Thriller() {
     }
   };
 
+  const { allThriller } = useAPI();
+  console.log(allThriller);
+
   return (
     <>
       <div className="thrillerlist">
@@ -35,17 +39,9 @@ export default function Thriller() {
           />
 
           <div className="thrillercontainer" ref={listRef}>
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
+            {allThriller.map((thriller, i) => (
+              <ListItem key={i} index={i} thriller={thriller} />
+            ))}
           </div>
 
           <ArrowForwardIosOutlined

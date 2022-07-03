@@ -3,6 +3,7 @@ import {
   ArrowForwardIosOutlined,
 } from "@mui/icons-material";
 import { useRef, useState } from "react";
+import { useAPI } from "../../context/getContext";
 import ListItem from "../listItem/ListItem";
 import "./crime.scss";
 
@@ -23,6 +24,9 @@ export default function Crime() {
     }
   };
 
+  const { allCrime } = useAPI();
+ 
+
   return (
     <>
       <div className="cslist">
@@ -35,20 +39,9 @@ export default function Crime() {
           />
 
           <div className="cscontainer" ref={listRef}>
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
+            {allCrime.map((crime, i) => (
+              <ListItem key={i} index={i} crime={crime} />
+            ))}
           </div>
 
           <ArrowForwardIosOutlined
