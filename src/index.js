@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-// import { AllMoviesSeriesContextProvider } from "./context/getContext";
+import { AllSeriesMoviesContextProvider } from "./context/getContext";
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AllSeriesMoviesContextProvider>
+      <App />
+    </AllSeriesMoviesContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

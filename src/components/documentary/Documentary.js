@@ -3,8 +3,9 @@ import {
   ArrowForwardIosOutlined,
 } from "@mui/icons-material";
 import { useRef, useState } from "react";
+import { useAPI } from "../../context/getContext";
 import ListItem from "../listItem/ListItem";
-import "./drama.scss";
+import "./documentary.scss";
 
 export default function Drama() {
   const [isMoved, setIsMoved] = useState(false);
@@ -23,10 +24,13 @@ export default function Drama() {
     }
   };
 
+  const { allDocumentary } = useAPI();
+  console.log(allDocumentary);
+
   return (
     <>
       <div className="dramalist">
-        <span className="dramalistTitle">Drama</span>
+        <span className="dramalistTitle">Documentary</span>
         <div className="dramawrapper">
           <ArrowBackIosOutlined
             className="dramasliderArrow dramaleft"
@@ -35,16 +39,9 @@ export default function Drama() {
           />
 
           <div className="dramacontainer" ref={listRef}>
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
+            {allDocumentary.map((documentary, i) => (
+              <ListItem key={i} index={i} documentary={documentary} />
+            ))}
           </div>
 
           <ArrowForwardIosOutlined

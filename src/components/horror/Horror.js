@@ -3,6 +3,7 @@ import {
   ArrowForwardIosOutlined,
 } from "@mui/icons-material";
 import { useRef, useState } from "react";
+import { useAPI } from "../../context/getContext";
 import ListItem from "../listItem/ListItem";
 import "./horror.scss";
 
@@ -23,6 +24,9 @@ export default function Horror() {
     }
   };
 
+  const { allHorror } = useAPI();
+  console.log(allHorror);
+
   return (
     <>
       <div className="hslist">
@@ -35,16 +39,9 @@ export default function Horror() {
           />
 
           <div className="hscontainer" ref={listRef}>
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
+            {allHorror.map((horror, i) => (
+              <ListItem key={i} index={i} horror={horror} />
+            ))}
           </div>
 
           <ArrowForwardIosOutlined

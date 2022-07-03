@@ -3,6 +3,7 @@ import {
   ArrowForwardIosOutlined,
 } from "@mui/icons-material";
 import { useRef, useState } from "react";
+import { useAPI } from "../../context/getContext";
 import ListItem from "../listItem/ListItem";
 import "./adventure.scss";
 
@@ -23,6 +24,9 @@ export default function Adventure() {
     }
   };
 
+  const { allAdventure } = useAPI();
+  console.log(allAdventure);
+
   return (
     <>
       <div className="list">
@@ -35,16 +39,9 @@ export default function Adventure() {
           />
 
           <div className="container" ref={listRef}>
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
+            {allAdventure.map((adventure, index) => (
+              <ListItem key={index} index={index} adventure={adventure} />
+            ))}
           </div>
 
           <ArrowForwardIosOutlined

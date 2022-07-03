@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import Adventure from "../../components/adventure/Adventure";
 import Animation from "../../components/animation/Animation";
 import Crime from "../../components/crime/Crime";
-import Drama from "../../components/drama/Drama";
+import Documentary from "../../components/documentary/Documentary";
 import Featured from "../../components/featured/Featured";
 import Footer from "../../components/footer/Footer";
 import Horror from "../../components/horror/Horror";
@@ -14,6 +14,7 @@ import ScienceFiction from "../../components/scienceFiction/ScienceFiction";
 import SingleMovie from "../../components/singleMovie/SingleMovie";
 import Thriller from "../../components/thriller/Thriller";
 import Timer from "../../components/timer/Timer";
+import { useAPI } from "../../context/getContext";
 import "./home.scss";
 
 const Home = () => {
@@ -50,6 +51,9 @@ const Home = () => {
   }, [path]);
   console.log(categoryItems);
 
+  const { allAdventure } = useAPI();
+  console.log(allAdventure);
+
   return (
     <>
       {genreSelected ? (
@@ -65,15 +69,6 @@ const Home = () => {
             </div>
             <span className="singleMovieTitle">Genre : {genreSelected}</span>
             <div className="singleMovieListContainer">
-              <SingleMovie />
-              <SingleMovie />
-              <SingleMovie />
-              <SingleMovie />
-              <SingleMovie />
-              <SingleMovie />
-              <SingleMovie />
-              <SingleMovie />
-              <SingleMovie />
               <SingleMovie />
             </div>
             <Timer />
@@ -117,7 +112,7 @@ const Home = () => {
                 <ScienceFiction />
                 <Thriller />
                 <Animation />
-                <Drama />
+                <Documentary />
               </>
             )}
 

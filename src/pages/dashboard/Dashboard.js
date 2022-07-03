@@ -125,6 +125,10 @@ function Dashboard() {
               <option className="optSelected" value="Romance">
                 Romance
               </option>
+
+              <option className="optSelected" value="Comedy">
+                Comedy
+              </option>
               <option className="optSelected" value="Science-Fiction">
                 Science-Fiction
               </option>
@@ -210,7 +214,15 @@ function Dashboard() {
         <div className="dashCol2">
           <span className="co2ItemSpan">Thumbnail Image</span>
           <label htmlFor="fileInput" className="thumbnailDiv">
-            <img src="/assets/bgImg.jpg" alt="" className="thumbNailImg" />
+            {thumbnail ? (
+              <img
+                src={URL.createObjectURL(thumbnail)}
+                alt=""
+                className="thumbNailImg"
+              />
+            ) : (
+              <img src="" alt="" className="thumbNailImg" />
+            )}
             <AddPhotoAlternateIcon className="dashboardIcon" />
             <input
               type="file"
@@ -223,7 +235,15 @@ function Dashboard() {
 
           <span className="co2ItemSpan">Trailer Video</span>
           <label htmlFor="fileInput2" className="thumbnailDiv">
-            <img src="/assets/bgImg.jpg" alt="" className="thumbNailImg" />
+            {trailer ? (
+              <img
+                src={URL.createObjectURL(trailer)}
+                alt=""
+                className="thumbNailImg"
+              />
+            ) : (
+              <img src="" alt="" className="thumbNailImg" />
+            )}
             <VideoCallIcon className="dashboardIcon" />
             <input
               type="file"
@@ -236,7 +256,19 @@ function Dashboard() {
 
           <span className="co2ItemSpan">Full Movie</span>
           <label htmlFor="fileInput3" className="thumbnailDiv">
-            <img src="/assets/bgImg.jpg" alt="" className="thumbNailImg" />
+            {video ? (
+              <img
+                src={URL.createObjectURL(video)}
+                alt=""
+                className="thumbNailImg"
+              />
+            ) : (
+              <img
+                src=""
+                alt=""
+                className="thumbNailImg"
+              />
+            )}
             <VideoCallIcon className="dashboardIcon" />
             <input
               type="file"
