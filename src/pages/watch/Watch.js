@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./watch.scss";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
 
 function Watch() {
   const location = useLocation();
-  console.log(location);
-  const movie = location.movie;
+  const path = location.pathname.split("/")[2];
+  console.log(path);
+
+  //Data according to id
+  const [detail, setDetail] = React.useState({});
+  useEffect(() => {
+    const fetchDetail = async () => {
+      const res = await axios.get(`/movies/get/${path}`);
+      setDetail(res.data);
+    };
+    fetchDetail();
+  }, [path]);
+  console.log(detail);
 
   return (
     <div className="watch">
@@ -16,13 +28,12 @@ function Watch() {
           Home
         </div>
       </Link>
-
       <video
         className="video"
         autoPlay
         progress="true"
         controls
-        src={movie.video}
+        src={detail?.video}
       />
     </div>
   );

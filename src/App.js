@@ -21,7 +21,7 @@ const App = () => {
           <Route exact path="/latest" element={<Home />} />
           <Route exact path="/watchLater" element={<Home />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
-          <Route exact path="/watch" element={<Watch />} />
+          <Route exact path="/watch/:id" element={<Watch />} />
         </Routes>
       </Router>
     </div>

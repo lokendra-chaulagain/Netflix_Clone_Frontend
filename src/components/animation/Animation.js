@@ -25,7 +25,6 @@ export default function Animation() {
   };
 
   const { allAnimation } = useAPI();
-  console.log(allAnimation);
 
   return (
     <>

@@ -25,7 +25,6 @@ export default function Adventure() {
   };
 
   const { allAdventure } = useAPI();
-  console.log(allAdventure);
 
   return (
     <>

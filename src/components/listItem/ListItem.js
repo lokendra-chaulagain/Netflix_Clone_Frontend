@@ -4,10 +4,11 @@ import {
   ThumbDownAltOutlined,
   ThumbUpAltOutlined,
 } from "@mui/icons-material";
-import React from "react";
+import React, { useRef } from "react";
 import "./listItem.scss";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function ListItem({
   index,
@@ -23,6 +24,7 @@ function ListItem({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
+    // <Link to={`/watch/${id}`} className="link">
     <div
       className="listItem"
       style={{ left: isHovered && index * 225 - 50 }}
@@ -32,9 +34,13 @@ function ListItem({
       {adventure && (
         <>
           <span className="frontMovieName">{adventure?.title}</span>
-          <button className="itemPlayBut">
-            <PlayArrowIcon className="itemPlayIcon" /> Play Now
-          </button>
+
+          <Link to={`/watch/${adventure?._id}`} className="link">
+            <button className="itemPlayBut">
+              <PlayArrowIcon className="itemPlayIcon" /> Play Now
+            </button>
+          </Link>
+
           <img src={adventure?.thumbnail} alt="" />
           <div className="itemInfo">
             <div className="icons">
@@ -60,9 +66,11 @@ function ListItem({
       {horror && (
         <>
           <span className="frontMovieName">{horror?.title}</span>
-          <button className="itemPlayBut">
-            <PlayArrowIcon className="itemPlayIcon" /> Play Now
-          </button>
+          <Link to={`/watch/${horror?._id}`} className="link">
+            <button className="itemPlayBut">
+              <PlayArrowIcon className="itemPlayIcon" /> Play Now
+            </button>
+          </Link>
           <img src={horror?.thumbnail} alt="" />
           <div className="itemInfo">
             <div className="icons">
@@ -88,9 +96,12 @@ function ListItem({
       {animation && (
         <>
           <span className="frontMovieName">{animation?.title}</span>
-          <button className="itemPlayBut">
-            <PlayArrowIcon className="itemPlayIcon" /> Play Now
-          </button>
+          <Link to={`/watch/${animation?._id}`} className="link">
+            <button className="itemPlayBut">
+              <PlayArrowIcon className="itemPlayIcon" /> Play Now
+            </button>
+          </Link>
+
           <img src={animation?.thumbnail} alt="" />
           <div className="itemInfo">
             <div className="icons">
@@ -116,9 +127,11 @@ function ListItem({
       {documentary && (
         <>
           <span className="frontMovieName">{documentary?.title}</span>
-          <button className="itemPlayBut">
-            <PlayArrowIcon className="itemPlayIcon" /> Play Now
-          </button>
+          <Link to={`/watch/${documentary?._id}`} className="link">
+            <button className="itemPlayBut">
+              <PlayArrowIcon className="itemPlayIcon" /> Play Now
+            </button>
+          </Link>
           <img src={documentary?.thumbnail} alt="" />
           <div className="itemInfo">
             <div className="icons">
@@ -144,9 +157,11 @@ function ListItem({
       {crime && (
         <>
           <span className="frontMovieName">{crime?.title}</span>
-          <button className="itemPlayBut">
-            <PlayArrowIcon className="itemPlayIcon" /> Play Now
-          </button>
+          <Link to={`/watch/${crime?._id}`} className="link">
+            <button className="itemPlayBut">
+              <PlayArrowIcon className="itemPlayIcon" /> Play Now
+            </button>
+          </Link>
           <img src={crime?.thumbnail} alt="" />
           <div className="itemInfo">
             <div className="icons">
@@ -172,9 +187,11 @@ function ListItem({
       {thriller && (
         <>
           <span className="frontMovieName">{thriller?.title}</span>
-          <button className="itemPlayBut">
-            <PlayArrowIcon className="itemPlayIcon" /> Play Now
-          </button>
+          <Link to={`/watch/${thriller?._id}`} className="link">
+            <button className="itemPlayBut">
+              <PlayArrowIcon className="itemPlayIcon" /> Play Now
+            </button>
+          </Link>
           <img src={thriller?.thumbnail} alt="" />
           <div className="itemInfo">
             <div className="icons">
@@ -200,9 +217,11 @@ function ListItem({
       {scienceFiction && (
         <>
           <span className="frontMovieName">{scienceFiction?.title}</span>
-          <button className="itemPlayBut">
-            <PlayArrowIcon className="itemPlayIcon" /> Play Now
-          </button>
+          <Link to={`/watch/${scienceFiction?._id}`} className="link">
+            <button className="itemPlayBut">
+              <PlayArrowIcon className="itemPlayIcon" /> Play Now
+            </button>
+          </Link>
           <img src={scienceFiction?.thumbnail} alt="" />
           <div className="itemInfo">
             <div className="icons">
@@ -228,9 +247,11 @@ function ListItem({
       {romance && (
         <>
           <span className="frontMovieName">{romance?.title}</span>
-          <button className="itemPlayBut">
-            <PlayArrowIcon className="itemPlayIcon" /> Play Now
-          </button>
+          <Link to={`/watch/${romance?._id}`} className="link">
+            <button className="itemPlayBut">
+              <PlayArrowIcon className="itemPlayIcon" /> Play Now
+            </button>
+          </Link>
           <img src={romance?.thumbnail} alt="" />
           <div className="itemInfo">
             <div className="icons">
@@ -253,6 +274,7 @@ function ListItem({
         </>
       )}
     </div>
+    //  </Link>
   );
 }
 

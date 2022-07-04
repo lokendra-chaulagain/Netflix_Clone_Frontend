@@ -1,9 +1,35 @@
 import { InfoOutlined, PlayArrow } from "@mui/icons-material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./featured.scss";
 
-function Featured({ genreSelected, genreItems, setGenreSelected }) {
+function Featured({
+  genreSelected,
+  genreItems,
+  setGenreSelected,
+  categoryItems,
+}) {
+  console.log(genreSelected);
+  // const location = useLocation();
+  // const path = location.pathname.split("/")[1];
+  // console.log(path);
+
+  // const [pathItem, setPathItem] = useState([]);
+  // useEffect(() => {
+  //   const fetchPathItem = async () => {
+  //     try {
+  //       const res = await axios.get(`/movies/category/${path}`);
+  //       setPathItem(res.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchPathItem();
+  // }, [path]);
+
+  var index3 = Math.floor(Math.random() * categoryItems?.length);
+
   var index = Math.floor(Math.random() * genreItems?.length);
 
   //All series and movies
@@ -19,19 +45,55 @@ function Featured({ genreSelected, genreItems, setGenreSelected }) {
     };
     fetchAllMoviesAndSeries();
   }, []);
+  console.log(allSeriesMovies);
   var index1 = Math.floor(Math.random() * allSeriesMovies.length);
 
   return (
     <div className="featured">
-      {genreSelected === undefined ? (
+      {/* {genreSelected === undefined ? (
         <img
           className="featuredBgImage"
-          src={allSeriesMovies[index1]?.img}
+          src={allSeriesMovies[index1]?.thumbnail}
+          alt=""
+        />
+      ) ??  categoryItems  (
+        <img
+          className="featuredBgImage"
+          src={categoryItems[index3]?.thumbnail}
           alt=""
         />
       ) : (
-        <img className="featuredBgImage" src={genreItems[index]?.img} alt="" />
-      )}
+        <img
+          className="featuredBgImage"
+          src={genreItems[index]?.thumbnail}
+          alt=""
+        />
+      )} */}
+
+      {
+        <>
+          {categoryItems && (
+            <img
+              className="featuredBgImage"
+              src={categoryItems[index3]?.thumbnail}
+              alt=""
+            />
+          )}
+
+          {genreSelected === undefined && <img
+            className="featuredBgImage"
+            src={allSeriesMovies[index1]?.thumbnail}
+            alt=""
+          />}
+
+         {genreSelected &&  <img
+            className="featuredBgImage"
+            src={genreItems[index]?.thumbnail}
+            alt=""
+          />}
+        </>
+      }
+
       <div className="category">
         <span>{genreSelected}</span>
         <select
@@ -45,14 +107,11 @@ function Featured({ genreSelected, genreItems, setGenreSelected }) {
 
           <option value="Adventure">Adventure</option>
           <option value="Crime">Crime</option>
-          <option value="Fantasy">Fantasy</option>
           <option value="Horror">Horror</option>
           <option value="Romance">Romance</option>
-          <option value="Sci-fi">Sci-fi</option>
+          <option value="Science-Fiction">Science-Fiction</option>
           <option value="Thriller">Thriller</option>
-          <option value="Western">Western</option>
           <option value="Animation">Animation</option>
-          <option value="Drama">Drama</option>
           <option value="Documentary">Documentary</option>
         </select>
       </div>

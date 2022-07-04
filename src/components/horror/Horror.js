@@ -25,7 +25,6 @@ export default function Horror() {
   };
 
   const { allHorror } = useAPI();
-  console.log(allHorror);
 
   return (
     <>

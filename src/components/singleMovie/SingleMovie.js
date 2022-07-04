@@ -7,35 +7,73 @@ import {
 import React from "react";
 import "./singleMovie.scss";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { Link } from "react-router-dom";
 
-function SingleMovie() {
+function SingleMovie({ genreItem, categoryItem }) {
   return (
-    <div className="singleMovie">
-      <span className="frontMovieName">Movie Name</span>
-      <button className="itemPlayBut">
-        <PlayArrowIcon className="itemPlayIcon" /> Play Now
-      </button>
-      <img src="/assets/1.webp" alt="" />
+    <>
+      {genreItem && (
+        <div className="singleMovie">
+          <span className="frontMovieName">{genreItem?.title}</span>
+          <Link to={`/watch/${genreItem?._id}`} className="link">
+            <button className="itemPlayBut">
+              <PlayArrowIcon className="itemPlayIcon" /> Play Now
+            </button>
+          </Link>
+          <img src={genreItem?.thumbnail} alt="" />
 
-      <div className="itemInfo">
-        <div className="icons">
-          <PlayArrow className="icon" />
+          <div className="itemInfo">
+            <div className="icons">
+              <PlayArrow className="icon" />
 
-          <Add className="icon" />
-          <ThumbUpAltOutlined className="icon" />
-          <ThumbDownAltOutlined className="icon" />
+              <Add className="icon" />
+              <ThumbUpAltOutlined className="icon" />
+              <ThumbDownAltOutlined className="icon" />
+            </div>
+
+            <div className="itemInfoTop">
+              <span>{genreItem?.duration} </span>
+              <span className="ageLimit">{genreItem?.ageLimit}</span>
+              <span>year</span>
+            </div>
+
+            <div className="description">{genreItem?.desc}</div>
+            <div className="genere"> {genreItem?.genre}</div>
+          </div>
         </div>
+      )}
 
-        <div className="itemInfoTop">
-          <span> 2 hour 35 min</span>
-          <span className="ageLimit">ageLimit</span>
-          <span>year</span>
+      {categoryItem && (
+        <div className="singleMovie">
+          <span className="frontMovieName">{categoryItem?.title}</span>
+          <Link to={`/watch/${categoryItem?._id}`} className="link">
+            <button className="itemPlayBut">
+              <PlayArrowIcon className="itemPlayIcon" /> Play Now
+            </button>
+          </Link>
+          <img src={categoryItem?.thumbnail} alt="" />
+
+          <div className="itemInfo">
+            <div className="icons">
+              <PlayArrow className="icon" />
+
+              <Add className="icon" />
+              <ThumbUpAltOutlined className="icon" />
+              <ThumbDownAltOutlined className="icon" />
+            </div>
+
+            <div className="itemInfoTop">
+              <span>{categoryItem?.duration} </span>
+              <span className="ageLimit">{categoryItem?.ageLimit}</span>
+              <span>year</span>
+            </div>
+
+            <div className="description">{categoryItem?.desc}</div>
+            <div className="genere"> {categoryItem?.genre}</div>
+          </div>
         </div>
-
-        <div className="description">des</div>
-        <div className="genere"> Action</div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

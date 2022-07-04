@@ -25,7 +25,6 @@ export default function Thriller() {
   };
 
   const { allThriller } = useAPI();
-  console.log(allThriller);
 
   return (
     <>

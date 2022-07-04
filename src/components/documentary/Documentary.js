@@ -25,7 +25,6 @@ export default function Drama() {
   };
 
   const { allDocumentary } = useAPI();
-  console.log(allDocumentary);
 
   return (
     <>

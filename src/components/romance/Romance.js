@@ -25,7 +25,6 @@ export default function Romance() {
   };
 
   const { allRomance } = useAPI();
-  console.log(allRomance);
 
   return (
     <>

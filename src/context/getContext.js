@@ -47,7 +47,6 @@ export function AllSeriesMoviesContextProvider({ children }) {
     };
     fetchAllMoviesSeries();
   }, []);
-  console.log(allRomance);
 
   return (
     <AllSeriesMoviesContext.Provider

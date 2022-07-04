@@ -14,10 +14,10 @@ import ScienceFiction from "../../components/scienceFiction/ScienceFiction";
 import SingleMovie from "../../components/singleMovie/SingleMovie";
 import Thriller from "../../components/thriller/Thriller";
 import Timer from "../../components/timer/Timer";
-import { useAPI } from "../../context/getContext";
 import "./home.scss";
 
 const Home = () => {
+  //Genre selection
   const [genreSelected, setGenreSelected] = useState("");
   const [genreItems, setGenreItems] = useState([]);
   useEffect(() => {
@@ -31,11 +31,11 @@ const Home = () => {
     };
     fetchDataAccordingToGenre();
   }, [genreSelected]);
+  console.log(genreItems);
 
   //
   const location = useLocation();
   const path = location.pathname.split("/")[1];
-  console.log(path);
 
   const [categoryItems, setCategoryItems] = useState([]);
   useEffect(() => {
@@ -49,10 +49,6 @@ const Home = () => {
     };
     fetchCategoryItems();
   }, [path]);
-  console.log(categoryItems);
-
-  const { allAdventure } = useAPI();
-  console.log(allAdventure);
 
   return (
     <>
@@ -69,7 +65,9 @@ const Home = () => {
             </div>
             <span className="singleMovieTitle">Genre : {genreSelected}</span>
             <div className="singleMovieListContainer">
-              <SingleMovie />
+              {genreItems.map((genreItem, i) => (
+                <SingleMovie index={i} key={i} genreItem={genreItem} />
+              ))}
             </div>
             <Timer />
             <Footer />
@@ -82,6 +80,7 @@ const Home = () => {
             <Featured
               setGenreSelected={setGenreSelected}
               genreItems={genreItems}
+              categoryItems={categoryItems}
             />
             {path && (
               <span className="singleMovieTitle">Category : {path}</span>
@@ -89,19 +88,9 @@ const Home = () => {
 
             {path ? (
               <div className="singleMovieListContainer">
-                <SingleMovie />
-                <SingleMovie />
-                <SingleMovie />
-                <SingleMovie />
-                <SingleMovie />
-                <SingleMovie />
-                <SingleMovie />
-                <SingleMovie />
-                <SingleMovie />
-                <SingleMovie />
-                <SingleMovie />
-                <SingleMovie />
-                <SingleMovie />
+                {categoryItems.map((categoryItem, i) => (
+                  <SingleMovie index={i} key={i} categoryItem={categoryItem} />
+                ))}
               </div>
             ) : (
               <>
