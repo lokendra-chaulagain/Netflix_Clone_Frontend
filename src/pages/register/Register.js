@@ -1,63 +1,184 @@
-import React from 'react'
-import "./register.scss"
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { useState, useRef } from 'react';
-
-
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
+import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
+import React from "react";
+import { registerSchema } from "./formikValidation";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import "./register.scss";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const { useFormik } = require("formik");
 
 function Register() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+  const onSubmit = async (values, actions) => {
+    try {
+      const res = await axios.post("/auth/register", {
+        username: values.username,
+        email: values.email,
+        password: values.password,
+      });
 
-    const emailRef = useRef()
-    const passwordRef = useRef()
+      toast.success("Login Successful", { theme: "colored" });
+    } catch (error) {}
+  };
 
-    const handleStart = () => {
-        setEmail(emailRef.current.value)
-    }
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    isSubmitting,
+  } = useFormik({
+    initialValues: {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: registerSchema,
+    onSubmit,
+  });
 
-    const handleFinish = () => {
-        setPassword(passwordRef.current.value)
-    }
+  return (
+    <div className="registerPage">
+      <div className="registerTopRow">
+        <img
+          className="registerPageTopRowLogo"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1920px-Netflix_2015_logo.svg.png"
+          alt=""
+        />
 
+        <Link to={"/login"} className="link">
+          <button className="registerLoginButton">Sin In</button>
+        </Link>
+      </div>
 
+      <div className="registerCenterCon">
+        <form className="rp-loginContainer" onSubmit={handleSubmit}>
+          <span className="registerPageTxt2">Register</span>
+          <span>
+            Unlimited movies, TV shows, and more.Enter your email to create or
+            restart your membership.
+          </span>
 
-    return (
-        <div className='registerPage'>
-            <div className="registerTopRow">
-                <img className='registerPageTopRowLogo' src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1920px-Netflix_2015_logo.svg.png" alt="" />
-                <button className='registerLoginButton'>Sin In</button>
-            </div>
-
-            <div className="registerCenterCon">
-                <span className='registerPageTxt1' >Unlimited movies, TV <br /> &ensp;&ensp;shows, and more.</span>
-                <span className='registerPageTxt2' >Watch anywhere. Cancel anytime.</span>
-                <span className='registerPageTxt3'>Ready to watch? Enter your email to create or restart your membership.</span>
-
-
-                {
-                    !email ? (
-                        <div className='registerPageInputCon'>
-                            <input className='registerPageEmailInput' type="email" placeholder='Email address' ref={emailRef} />
-                            <button className='registerPageGetStartedBut' onClick={handleStart}  >
-                                Get Started
-                                <ArrowForwardIosIcon className='arrowForward' />
-                            </button>
-                        </div>
-                    ) : (
-                        <div className='registerPageInputCon'>
-                            <input className='registerPageEmailInput' type="password" placeholder='Password' ref={passwordRef} />
-                            <button className='registerPageGetStartedBut' onClick={handleFinish}  >
-                                Start
-                                <ArrowForwardIosIcon className='arrowForward' />
-                            </button>
-                        </div>
-                    )
+          <div className="rp-loginInputCon">
+            <div className="iconAndInputCon">
+              <div className="rp-inputIconCon">
+                <PersonOutlinedIcon className="rp-Input-icon" />
+              </div>
+              <input
+                type="text"
+                id="username"
+                placeholder="Full Name"
+                value={values.username}
+                autoComplete="off"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={
+                  errors.username && touched.username
+                    ? "input-error"
+                    : "registerInputs"
                 }
-
+              />
             </div>
-        </div>
-    )
+            {errors.username && touched.username && (
+              <p className="error">{errors.username}</p>
+            )}
+          </div>
+
+          <div className="rp-loginInputCon">
+            <div className="iconAndInputCon">
+              <div className="rp-inputIconCon">
+                <MailOutlinedIcon className="rp-Input-icon" />
+              </div>
+              <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                value={values.email}
+                autoComplete="off"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={
+                  errors.email && touched.email
+                    ? "input-error"
+                    : "registerInputs"
+                }
+              />
+            </div>
+            {errors.email && touched.email && (
+              <p className="error">{errors.email}</p>
+            )}
+          </div>
+
+          <div className="rp-loginInputCon">
+            <div className="iconAndInputCon">
+              <div className="rp-inputIconCon">
+                <KeyOutlinedIcon className="rp-Input-icon" />
+              </div>
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                value={values.password}
+                autoComplete="off"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={
+                  errors.password && touched.password
+                    ? "input-error"
+                    : "registerInputs"
+                }
+              />
+            </div>
+            {errors.password && touched.password && (
+              <p className="error">{errors.password}</p>
+            )}
+          </div>
+
+          <div className="rp-loginInputCon">
+            <div className="iconAndInputCon">
+              <div className="rp-inputIconCon">
+                <KeyOutlinedIcon className="rp-Input-icon" />
+              </div>
+              <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm password"
+                value={values.confirmPassword}
+                autoComplete="off"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={
+                  errors.confirmPassword && touched.confirmPassword
+                    ? "input-error"
+                    : "registerInputs"
+                }
+              />
+            </div>
+            {errors.confirmPassword && touched.confirmPassword && (
+              <p className="error">{errors.confirmPassword}</p>
+            )}
+          </div>
+
+          <button className="rp-loginBut" type="submit" disabled={isSubmitting}>
+            Register
+          </button>
+
+          <span className="rp-alreadyAcc">Already have an account ?</span>
+
+          <Link to="/login" className="link">
+            <button className="rp-loginBut rp-loginBut1">
+              Log into your account
+            </button>
+          </Link>
+        </form>
+      </div>
+    </div>
+  );
 }
 
-export default Register
+export default Register;

@@ -4,7 +4,6 @@ import {
   ThumbDownAltOutlined,
   ThumbUpAltOutlined,
 } from "@mui/icons-material";
-import React, { useRef } from "react";
 import "./listItem.scss";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useState } from "react";

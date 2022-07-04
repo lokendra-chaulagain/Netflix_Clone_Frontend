@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { AllSeriesMoviesContextProvider } from "./context/getContext";
 
-
 ReactDOM.render(
   <React.StrictMode>
     <AllSeriesMoviesContextProvider>
