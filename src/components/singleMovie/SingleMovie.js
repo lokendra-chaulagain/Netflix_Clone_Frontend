@@ -9,7 +9,8 @@ import "./singleMovie.scss";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { Link } from "react-router-dom";
 
-function SingleMovie({ genreItem, categoryItem }) {
+function SingleMovie({ genreItem, categoryItem, latestItem }) {
+  console.log(latestItem);
   return (
     <>
       {genreItem && (
@@ -39,6 +40,37 @@ function SingleMovie({ genreItem, categoryItem }) {
 
             <div className="description">{genreItem?.desc}</div>
             <div className="genere"> {genreItem?.genre}</div>
+          </div>
+        </div>
+      )}
+
+      {latestItem && (
+        <div className="singleMovie">
+          <span className="frontMovieName">{latestItem?.title}</span>
+          <Link to={`/watch/${latestItem?._id}`} className="link">
+            <button className="itemPlayBut">
+              <PlayArrowIcon className="itemPlayIcon" /> Play Now
+            </button>
+          </Link>
+          <img src={latestItem?.thumbnail} alt="" />
+
+          <div className="itemInfo">
+            <div className="icons">
+              <PlayArrow className="icon" />
+
+              <Add className="icon" />
+              <ThumbUpAltOutlined className="icon" />
+              <ThumbDownAltOutlined className="icon" />
+            </div>
+
+            <div className="itemInfoTop">
+              <span>{latestItem?.duration} </span>
+              <span className="ageLimit">{latestItem?.ageLimit}</span>
+              <span>year</span>
+            </div>
+
+            <div className="description">{latestItem?.desc}</div>
+            <div className="genere"> {latestItem?.genre}</div>
           </div>
         </div>
       )}

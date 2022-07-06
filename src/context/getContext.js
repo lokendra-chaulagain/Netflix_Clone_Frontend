@@ -45,7 +45,6 @@ export function AllSeriesMoviesContextProvider({ children }) {
 
         const res9 = await axios.get("/movies/all");
         setAllSeriesAndMovies(res9.data);
-
       } catch (error) {
         console.log(error);
       }
@@ -64,7 +63,7 @@ export function AllSeriesMoviesContextProvider({ children }) {
         allCrime,
         allThriller,
         allRomance,
-        allSeriesAndMovies
+        allSeriesAndMovies,
       }}
     >
       {children}

@@ -34,22 +34,28 @@ const Home = () => {
   }, [genreSelected]);
   console.log(genreItems);
 
-  //
+  //Path
   const location = useLocation();
   const path = location.pathname.split("/")[1];
 
   const [categoryItems, setCategoryItems] = useState([]);
+  const [latestItems, setLatestItems] = useState([]);
   useEffect(() => {
     const fetchCategoryItems = async () => {
       try {
-        const res = await axios.get(`/movies/category/${path}`);
-        setCategoryItems(res.data);
+        if (path === "latest") {
+          const res = await axios.get("/movies/latest");
+          setLatestItems(res.data);
+        }
+        const res2 = await axios.get(`/movies/category/${path}`);
+        setCategoryItems(res2.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchCategoryItems();
   }, [path]);
+  console.log(latestItems);
 
   //Fetch all users for search query
   const { allSeriesAndMovies } = useAPI();
@@ -63,68 +69,155 @@ const Home = () => {
   };
   console.log(searchUserResultData);
 
-  return (
-    <>
-      {genreSelected ? (
-        <>
-          <div className="home1">
-            <div className="home">
-              <Navbar setSearchResult={setSearchResult} />
-              <Featured
-                setGenreSelected={setGenreSelected}
-                genreSelected={genreSelected}
-                genreItems={genreItems}
-              />
-            </div>
-            <span className="singleMovieTitle">Genre : {genreSelected}</span>
-            <div className="singleMovieListContainer">
-              {genreItems.map((genreItem, i) => (
-                <SingleMovie index={i} key={i} genreItem={genreItem} />
-              ))}
-            </div>
-            <Timer />
-            <Footer />
-          </div>
-        </>
-      ) : (
-        <>
+ 
+
+  if (genreSelected) {
+    return (
+      <>
+        <div className="home1">
           <div className="home">
             <Navbar setSearchResult={setSearchResult} />
             <Featured
               setGenreSelected={setGenreSelected}
+              genreSelected={genreSelected}
               genreItems={genreItems}
-              categoryItems={categoryItems}
             />
-            {path && (
-              <span className="singleMovieTitle">Category : {path}</span>
-            )}
-
-            {path ? (
-              <div className="singleMovieListContainer">
-                {categoryItems.map((categoryItem, i) => (
-                  <SingleMovie index={i} key={i} categoryItem={categoryItem} />
-                ))}
-              </div>
-            ) : (
-              <>
-                <Adventure />
-                <Crime />
-                <Horror />
-                <Romance />
-                <ScienceFiction />
-                <Thriller />
-                <Animation />
-                <Documentary />
-              </>
-            )}
-
-            <Timer />
-            <Footer />
           </div>
-        </>
-      )}
-    </>
-  );
+          <span className="singleMovieTitle">Genre : {genreSelected}</span>
+          <div className="singleMovieListContainer">
+            {genreItems.map((genreItem, i) => (
+              <SingleMovie index={i} key={i} genreItem={genreItem} />
+            ))}
+          </div>
+          <Timer />
+          <Footer />
+        </div>
+      </>
+    );
+  } else if (path === "latest") {
+    return (
+      <>
+        <div className="home1">
+          <div className="home">
+            <Navbar setSearchResult={setSearchResult} />
+            <Featured
+              setGenreSelected={setGenreSelected}
+              genreSelected={genreSelected}
+              genreItems={genreItems}
+            />
+          </div>
+          <span className="singleMovieTitle">Latest Uploads</span>
+          <div className="singleMovieListContainer">
+            {latestItems.map((latestItem, i) => (
+              <SingleMovie index={i} key={i} latestItem={latestItem} />
+            ))}
+          </div>
+          <Timer />
+          <Footer />
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <div className="home">
+        <Navbar setSearchResult={setSearchResult} />
+        <Featured
+          setGenreSelected={setGenreSelected}
+          genreItems={genreItems}
+          categoryItems={categoryItems}
+        />
+        {path && <span className="singleMovieTitle">Category : {path}</span>}
+
+        {path ? (
+          <div className="singleMovieListContainer">
+            {categoryItems.map((categoryItem, i) => (
+              <SingleMovie index={i} key={i} categoryItem={categoryItem} />
+            ))}
+          </div>
+        ) : (
+          <>
+            <Adventure />
+            <Crime />
+            <Horror />
+            <Romance />
+            <ScienceFiction />
+            <Thriller />
+            <Animation />
+            <Documentary />
+          </>
+        )}
+
+        <Timer />
+        <Footer />
+      </div>
+    );
+  }
 };
 
 export default Home;
+
+// return (
+//   <>
+//     {genreSelected ? (
+//       <>
+//         <div className="home1">
+//           <div className="home">
+//             <Navbar setSearchResult={setSearchResult} />
+//             <Featured
+//               setGenreSelected={setGenreSelected}
+//               genreSelected={genreSelected}
+//               genreItems={genreItems}
+//             />
+//           </div>
+//           <span className="singleMovieTitle">Genre : {genreSelected}</span>
+//           <div className="singleMovieListContainer">
+//             {genreItems.map((genreItem, i) => (
+//               <SingleMovie index={i} key={i} genreItem={genreItem} />
+//             ))}
+//           </div>
+//           <Timer />
+//           <Footer />
+//         </div>
+//       </>
+//     ) : (
+//       <>
+//         <div className="home">
+//           <Navbar setSearchResult={setSearchResult} />
+//           <Featured
+//             setGenreSelected={setGenreSelected}
+//             genreItems={genreItems}
+//             categoryItems={categoryItems}
+//           />
+//           {path && (
+//             <span className="singleMovieTitle">Category : {path}</span>
+//           )}
+
+//           {path ? (
+//             <div className="singleMovieListContainer">
+//               {categoryItems.map((categoryItem, i) => (
+//                 <SingleMovie index={i} key={i} categoryItem={categoryItem} />
+//               ))}
+//             </div>
+//           ) : (
+//             <>
+//               <Adventure />
+//               <Crime />
+//               <Horror />
+//               <Romance />
+//               <ScienceFiction />
+//               <Thriller />
+//               <Animation />
+//               <Documentary />
+//             </>
+//           )}
+
+//           <Timer />
+//           <Footer />
+//         </div>
+//       </>
+//     )}
+//   </>
+// );
+// };
+
+// export default Home;

@@ -51,10 +51,6 @@ const Navbar = ({ setSearchResult }) => {
             <span className="navNarLinks">Latest</span>
           </NavLink>
 
-          <NavLink to={"/watchLater"} activeclassname="active" className="link">
-            <span className="navNarLinks">Watch Later</span>
-          </NavLink>
-
           <NavLink to={"/dashboard"} activeclassname="active" className="link">
             <span className="navNarLinks">Dashboard</span>
           </NavLink>
