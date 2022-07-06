@@ -1,45 +1,56 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./login.scss";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import Checkbox from "@mui/material/Checkbox";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import { registerSchema } from "../register/formikValidation";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../context/authContext/AuthContext";
+import { loginCall } from "../../context/authContext/authApiCalls";
 const { useFormik } = require("formik");
 
 function Login() {
-  const onSubmit = async (values, actions) => {
-    try {
-      const res = await axios.post("/auth/register", {
-        username: values.username,
-        email: values.email,
-        password: values.password,
-      });
+  // const onSubmit = async (values, actions) => {
+  //   try {
+  //     await axios.post("/auth/login", {
+  //       email: values.email,
+  //       password: values.password,
+  //     });
 
-      toast.success("Login Successful", { theme: "colored" });
-    } catch (error) {}
+  //     toast.success("Login Successful", { theme: "colored" });
+  //   } catch (error) {}
+  // };
+
+  //Login
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    loginCall({ email, password }, dispatch);
+    navigate("/");
   };
 
   const {
-    values,
+    // values,
     errors,
     touched,
     handleBlur,
-    handleChange,
-    handleSubmit,
-    isSubmitting,
+    // handleChange,
+    // handleSubmit,
+    // isSubmitting,
   } = useFormik({
     initialValues: {
-      username: "",
       email: "",
       password: "",
-      confirmPassword: "",
     },
     validationSchema: registerSchema,
-    onSubmit,
+    handleLogin,
   });
 
   return (
@@ -53,7 +64,7 @@ function Login() {
       </div>
 
       <div className="loginFormContainer">
-        <form className="loginForm" onSubmit={handleSubmit}>
+        <form className="loginForm">
           <span className="loginFormSignInTitle">Sign In</span>
 
           <div className="rp-loginInputCon">
@@ -65,9 +76,9 @@ function Login() {
                 type="email"
                 id="email"
                 placeholder="Email"
-                value={values.email}
+                // value={values.email}
                 autoComplete="off"
-                onChange={handleChange}
+                onChange={(e) => setEmail(e.target.value)}
                 onBlur={handleBlur}
                 className={
                   errors.email && touched.email
@@ -90,9 +101,9 @@ function Login() {
                 type="password"
                 id="password"
                 placeholder="Password"
-                value={values.password}
+                // value={values.password}
                 autoComplete="off"
-                onChange={handleChange}
+                onChange={(e) => setPassword(e.target.value)}
                 onBlur={handleBlur}
                 className={
                   errors.password && touched.password
@@ -106,32 +117,7 @@ function Login() {
             )}
           </div>
 
-          <div className="rp-loginInputCon">
-            <div className="iconAndInputCon">
-              <div className="rp-inputIconCon">
-                <KeyOutlinedIcon className="rp-Input-icon" />
-              </div>
-              <input
-                type="password"
-                id="confirmPassword"
-                placeholder="Confirm password"
-                value={values.confirmPassword}
-                autoComplete="off"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={
-                  errors.confirmPassword && touched.confirmPassword
-                    ? "input-error"
-                    : "registerInputs"
-                }
-              />
-            </div>
-            {errors.confirmPassword && touched.confirmPassword && (
-              <p className="error">{errors.confirmPassword}</p>
-            )}
-          </div>
-
-          <button className="loginFormSignInBut" type="submit">
+          <button className="loginFormSignInBut" onClick={handleLogin}>
             Sign In
           </button>
 
