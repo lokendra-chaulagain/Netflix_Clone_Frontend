@@ -6,24 +6,11 @@ import { Link, useNavigate } from "react-router-dom";
 import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import { registerSchema } from "../register/formikValidation";
-import axios from "axios";
-import { toast } from "react-toastify";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import { loginCall } from "../../context/authContext/authApiCalls";
 const { useFormik } = require("formik");
 
 function Login() {
-  // const onSubmit = async (values, actions) => {
-  //   try {
-  //     await axios.post("/auth/login", {
-  //       email: values.email,
-  //       password: values.password,
-  //     });
-
-  //     toast.success("Login Successful", { theme: "colored" });
-  //   } catch (error) {}
-  // };
-
   //Login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,15 +23,7 @@ function Login() {
     navigate("/");
   };
 
-  const {
-    // values,
-    errors,
-    touched,
-    handleBlur,
-    // handleChange,
-    // handleSubmit,
-    // isSubmitting,
-  } = useFormik({
+  const { errors, touched, handleBlur } = useFormik({
     initialValues: {
       email: "",
       password: "",
@@ -76,7 +55,6 @@ function Login() {
                 type="email"
                 id="email"
                 placeholder="Email"
-                // value={values.email}
                 autoComplete="off"
                 onChange={(e) => setEmail(e.target.value)}
                 onBlur={handleBlur}
@@ -101,7 +79,6 @@ function Login() {
                 type="password"
                 id="password"
                 placeholder="Password"
-                // value={values.password}
                 autoComplete="off"
                 onChange={(e) => setPassword(e.target.value)}
                 onBlur={handleBlur}

@@ -14,6 +14,7 @@ import ScienceFiction from "../../components/scienceFiction/ScienceFiction";
 import SingleMovie from "../../components/singleMovie/SingleMovie";
 import Thriller from "../../components/thriller/Thriller";
 import Timer from "../../components/timer/Timer";
+import { useAPI } from "../../context/getContext";
 import "./home.scss";
 
 const Home = () => {
@@ -50,13 +51,25 @@ const Home = () => {
     fetchCategoryItems();
   }, [path]);
 
+  //Fetch all users for search query
+  const { allSeriesAndMovies } = useAPI();
+
+  //Search users by username query
+  const [searchResult, setSearchResult] = useState("");
+  const searchUserResultData = (data) => {
+    return data.filter((item) =>
+      item.title.toLowerCase().includes(searchResult.toLowerCase())
+    );
+  };
+  console.log(searchUserResultData);
+
   return (
     <>
       {genreSelected ? (
         <>
           <div className="home1">
             <div className="home">
-              <Navbar />
+              <Navbar setSearchResult={setSearchResult} />
               <Featured
                 setGenreSelected={setGenreSelected}
                 genreSelected={genreSelected}
@@ -76,7 +89,7 @@ const Home = () => {
       ) : (
         <>
           <div className="home">
-            <Navbar />
+            <Navbar setSearchResult={setSearchResult} />
             <Featured
               setGenreSelected={setGenreSelected}
               genreItems={genreItems}

@@ -1,26 +1,36 @@
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
-import React from "react";
+import React, { useContext } from "react";
 import { registerSchema } from "./formikValidation";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./register.scss";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../../context/authContext/AuthContext";
 const { useFormik } = require("formik");
 
 function Register() {
+  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const onSubmit = async (values, actions) => {
+    dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("/auth/register", {
         username: values.username,
         email: values.email,
         password: values.password,
       });
-
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+      actions.resetForm();
+      navigate("/");
       toast.success("Login Successful", { theme: "colored" });
-    } catch (error) {}
+    } catch (error) {
+      toast.error(error.response.data.message, { theme: "colored" });
+      dispatch({ type: "LOGIN_FAILURE" });
+    }
   };
 
   const {
@@ -50,16 +60,12 @@ function Register() {
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1920px-Netflix_2015_logo.svg.png"
           alt=""
         />
-
-        <Link to={"/login"} className="link">
-          <button className="registerLoginButton">Sin In</button>
-        </Link>
       </div>
 
       <div className="registerCenterCon">
         <form className="rp-loginContainer" onSubmit={handleSubmit}>
           <span className="registerPageTxt2">Register</span>
-          <span>
+          <span className="registerSpan2">
             Unlimited movies, TV shows, and more.Enter your email to create or
             restart your membership.
           </span>

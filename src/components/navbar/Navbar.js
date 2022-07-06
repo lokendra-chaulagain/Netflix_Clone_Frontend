@@ -1,11 +1,12 @@
-import { ArrowDropDown, Notifications, Search } from "@mui/icons-material";
+import { ArrowDropDown } from "@mui/icons-material";
 import React, { useContext } from "react";
 import { useState } from "react";
+import SearchIcon from "@mui/icons-material/Search";
 import "./navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/authContext/AuthContext";
 
-const Navbar = () => {
+const Navbar = ({ setSearchResult }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
@@ -25,54 +26,51 @@ const Navbar = () => {
         <div className="left">
           <img src="/assets/logo.png" alt="" />
 
-          <Link to={"/"} className="link">
+          <NavLink to={"/"} activeclassname="active" className="link">
             <span
               className="navNarLinks"
               onClick={() => window.location.replace("/")}
             >
               Home
             </span>
-          </Link>
+          </NavLink>
 
-          <Link to={"/series"} className="link">
-            <span
-              className="navNarLinks"
-              // onClick={() => window.location.replace("/series")}
-            >
-              Series
-            </span>
-          </Link>
+          <NavLink to={"/series"} activeclassname="active" className="link">
+            <span className="navNarLinks">Series</span>
+          </NavLink>
 
-          <Link to={"/movies"} className="link">
-            <span
-              className="navNarLinks"
-              // onClick={() => window.location.replace("/movies")}
-            >
-              Movies
-            </span>
-          </Link>
+          <NavLink to={"/movies"} activeclassname="active" className="link">
+            <span className="navNarLinks">Movies</span>
+          </NavLink>
 
-          <Link to={"/kids"} className="link">
+          <NavLink to={"/kids"} activeclassname="active" className="link">
             <span className="navNarLinks">KID</span>
-          </Link>
+          </NavLink>
 
-          <Link to={"/latest"} className="link">
+          <NavLink to={"/latest"} activeclassname="active" className="link">
             <span className="navNarLinks">Latest</span>
-          </Link>
+          </NavLink>
 
-          <Link to={"/watchLater"} className="link">
+          <NavLink to={"/watchLater"} activeclassname="active" className="link">
             <span className="navNarLinks">Watch Later</span>
-          </Link>
+          </NavLink>
 
-          <Link to={"/dashboard"} className="link">
+          <NavLink to={"/dashboard"} activeclassname="active" className="link">
             <span className="navNarLinks">Dashboard</span>
-          </Link>
+          </NavLink>
         </div>
 
         <div className="right">
-          <Search className="icon" />
+          <div className="topbarLeft__search">
+            <SearchIcon className="topSearchInputIcon" />
+            <input
+              className="topSearchInput"
+              type="text"
+              placeholder="Search Facebook"
+              onChange={(e) => setSearchResult(e.target.value)}
+            />
+          </div>
 
-          <Notifications className="icon" />
           <img className="nabBarProfile" src="assets/profile.jpg" alt="" />
 
           <div className="profile">

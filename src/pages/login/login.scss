@@ -87,12 +87,15 @@
             border-radius: 20px;
             background-color: transparent;
             margin-left: 1px;
+            color: white;
+            padding-left: 3px;
+            font-size: 18px;
 
             &::placeholder {
               font-size: 16px;
               color: rgb(131, 129, 129);
               font-weight: 500;
-              padding-left: 5px;
+              padding-left: 3px;
             }
           }
         }

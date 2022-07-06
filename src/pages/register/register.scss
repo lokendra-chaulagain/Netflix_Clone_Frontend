@@ -21,18 +21,6 @@
       width: 160px;
       height: 44px;
     }
-
-    .registerLoginButton {
-      width: 85px;
-      height: 32px;
-      background-color: rgb(221, 5, 5);
-      border: none;
-      color: white;
-      border-radius: 4px;
-      font-size: 18px;
-      font-weight: 500;
-      cursor: pointer;
-    }
   }
 
   .registerCenterCon {
@@ -49,6 +37,10 @@
     .registerPageTxt2 {
       font-size: 28px;
       font-weight: 400;
+    }
+
+    .registerSpan2{
+      margin-top: 10px;
     }
 
     .rp-loginContainer {
@@ -110,13 +102,15 @@
             width: 85%;
             border-radius: 20px;
             background-color: transparent;
-            margin-left: 1px;
+            padding-left: 3px;
+            color: white;
+            font-size: 18px;
 
             &::placeholder {
               font-size: 16px;
               color: rgb(131, 129, 129);
               font-weight: 500;
-              padding-left: 5px;
+              padding-left: 3px;
             }
           }
         }
