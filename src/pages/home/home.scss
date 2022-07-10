@@ -1,5 +1,7 @@
 .home1 {
   background-color: var(--main-color);
+  width: 100vw;
+  overflow-x: hidden;
 
   .singleMovieTitle {
     color: white;

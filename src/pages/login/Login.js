@@ -20,7 +20,7 @@ function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
     loginCall({ email, password }, dispatch);
-    navigate("/");
+    navigate("/home");
   };
 
   const { errors, touched, handleBlur } = useFormik({

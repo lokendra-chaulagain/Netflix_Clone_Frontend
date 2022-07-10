@@ -9,8 +9,12 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import RedditIcon from "@mui/icons-material/Reddit";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import GoogleIcon from "@mui/icons-material/Google";
+import { useAPI } from "../../context/getContext";
+import {format}  from 'timeago.js';
 
 function Footer() {
+  const { latest5 } = useAPI();
+
   return (
     <>
       <div className="footer">
@@ -33,25 +37,12 @@ function Footer() {
           <span className="col2Title">Latest uploads</span>
           <hr className="latestUploadHr" />
 
-          <div className="col2Item">
-            <span className="col2ItemTitle">Lorem ipsum dolor. </span>
-            <span className="col2ItemUploadTime">5 min ago </span>
-          </div>
-
-          <div className="col2Item">
-            <span className="col2ItemTitle">Lorem ipsum dolor. </span>
-            <span className="col2ItemUploadTime">5 min ago </span>
-          </div>
-
-          <div className="col2Item">
-            <span className="col2ItemTitle">Lorem ipsum dolor. </span>
-            <span className="col2ItemUploadTime">5 min ago </span>
-          </div>
-
-          <div className="col2Item">
-            <span className="col2ItemTitle">Lorem ipsum dolor. </span>
-            <span className="col2ItemUploadTime">5 min ago </span>
-          </div>
+          {latest5.map((latest5Item, i) => (
+            <div index={i} key={i} className="col2Item">
+              <span className="col2ItemTitle">{latest5Item.title} </span>
+              <span className="col2ItemUploadTime">{format(latest5Item.createdAt)  } </span>
+            </div>
+          ))}
         </div>
 
         <div className="footerCol3">

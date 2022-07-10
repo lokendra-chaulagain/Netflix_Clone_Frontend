@@ -16,7 +16,7 @@ const App = () => {
     <div>
       <Router>
         <Routes>
-          <Route exact path="/" element={user ? <Home /> : <Login />} />
+          <Route exact path="/home" element={user ? <Home /> : <Login />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/movies" element={user ? <Home /> : <Login />} />
@@ -31,7 +31,7 @@ const App = () => {
           <Route
             exact
             path="/dashboard"
-            element={user ? <Dashboard /> : <Login />}
+            element={user?.isAdmin===true ? <Dashboard /> : <Login />}
           />
           <Route
             exact

@@ -14,7 +14,6 @@ import ScienceFiction from "../../components/scienceFiction/ScienceFiction";
 import SingleMovie from "../../components/singleMovie/SingleMovie";
 import Thriller from "../../components/thriller/Thriller";
 import Timer from "../../components/timer/Timer";
-import { useAPI } from "../../context/getContext";
 import "./home.scss";
 
 const Home = () => {
@@ -32,7 +31,6 @@ const Home = () => {
     };
     fetchDataAccordingToGenre();
   }, [genreSelected]);
-  console.log(genreItems);
 
   //Path
   const location = useLocation();
@@ -55,28 +53,13 @@ const Home = () => {
     };
     fetchCategoryItems();
   }, [path]);
-  console.log(latestItems);
-
-  //Fetch all users for search query
-  const { allSeriesAndMovies } = useAPI();
-
-  //Search users by username query
-  const [searchResult, setSearchResult] = useState("");
-  const searchUserResultData = (data) => {
-    return data.filter((item) =>
-      item.title.toLowerCase().includes(searchResult.toLowerCase())
-    );
-  };
-  console.log(searchUserResultData);
-
- 
 
   if (genreSelected) {
     return (
       <>
         <div className="home1">
           <div className="home">
-            <Navbar setSearchResult={setSearchResult} />
+            <Navbar />
             <Featured
               setGenreSelected={setGenreSelected}
               genreSelected={genreSelected}
@@ -99,11 +82,12 @@ const Home = () => {
       <>
         <div className="home1">
           <div className="home">
-            <Navbar setSearchResult={setSearchResult} />
+            <Navbar />
             <Featured
               setGenreSelected={setGenreSelected}
               genreSelected={genreSelected}
               genreItems={genreItems}
+              latestItems={latestItems}
             />
           </div>
           <span className="singleMovieTitle">Latest Uploads</span>
@@ -117,10 +101,42 @@ const Home = () => {
         </div>
       </>
     );
+  } else if (path === "home") {
+    return (
+      <>
+        <div className="home1">
+          <div className="home">
+            <Navbar />
+            <Featured
+              setGenreSelected={setGenreSelected}
+              genreSelected={genreSelected}
+              genreItems={genreItems}
+              latestItems={latestItems}
+            />
+          </div>
+          <span className="singleMovieTitle">All Movies & Shows</span>
+          {/* <div className="singleMovieListContainer"> */}
+          <>
+            <Adventure />
+            <Crime />
+            <Horror />
+            <Romance />
+            <ScienceFiction />
+            <Thriller />
+            <Animation />
+            <Documentary />
+          </>
+
+          {/* </div> */}
+          <Timer />
+          <Footer />
+        </div>
+      </>
+    );
   } else {
     return (
       <div className="home">
-        <Navbar setSearchResult={setSearchResult} />
+        <Navbar />
         <Featured
           setGenreSelected={setGenreSelected}
           genreItems={genreItems}

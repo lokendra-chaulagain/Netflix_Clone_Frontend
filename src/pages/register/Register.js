@@ -25,7 +25,7 @@ function Register() {
       });
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       actions.resetForm();
-      navigate("/");
+      navigate("/home");
       toast.success("Login Successful", { theme: "colored" });
     } catch (error) {
       toast.error(error.response.data.message, { theme: "colored" });

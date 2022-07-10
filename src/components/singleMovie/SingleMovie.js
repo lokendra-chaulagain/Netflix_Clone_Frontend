@@ -10,7 +10,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { Link } from "react-router-dom";
 
 function SingleMovie({ genreItem, categoryItem, latestItem }) {
-  console.log(latestItem);
+  // console.log(latestItem);
   return (
     <>
       {genreItem && (

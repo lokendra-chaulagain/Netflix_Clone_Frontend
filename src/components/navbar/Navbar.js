@@ -34,6 +34,9 @@ const Navbar = ({ setSearchResult }) => {
     setSidebar(!sidebar);
   };
 
+  const {user} = useContext(AuthContext);
+  console.log(user)
+
   return (
     <div className={isScrolled ? "navbar scrolled" : "navbar"}>
       <div className="container">
@@ -46,7 +49,7 @@ const Navbar = ({ setSearchResult }) => {
             <div className="sideBar" onClick={showSlider}>
               <ClearIcon className="clearIcon" />
               <div className="drawerSliderWrapper">
-                <NavLink to="/"  activeclassname="dactive" className="link">
+                <NavLink to="/home"  activeclassname="dactive" className="link">
                   <div className="sliderItems">
                     <HomeIcon className="sliderListIcons" />
                     <span className="sliderListItem">Home</span>
@@ -85,7 +88,7 @@ const Navbar = ({ setSearchResult }) => {
                   <div className="sliderItems">
                     <LogoutIcon className="sliderListIcons" />
                     <span className="sliderListItem" onClick={handleLogout}>
-                      LOGOUT
+                      Logout
                     </span>
                   </div>
                 </NavLink>
@@ -95,10 +98,10 @@ const Navbar = ({ setSearchResult }) => {
           {/* */}
           {/* ========== */}
 
-          <NavLink to={"/"} activeclassname="active" className="link">
+          <NavLink to={"/home"} activeclassname="active" className="link">
             <span
               className="navNarLinks"
-              onClick={() => window.location.replace("/")}
+              // onClick={() => window.location.replace("/home")}
             >
               Home
             </span>
@@ -121,7 +124,7 @@ const Navbar = ({ setSearchResult }) => {
           </NavLink>
 
           <NavLink to={"/dashboard"} activeclassname="active" className="link">
-            <span className="navNarLinks">Dashboard</span>
+            {user.isAdmin===true && <span className="navNarLinks">Dashboard</span>}
           </NavLink>
         </div>
 
@@ -144,7 +147,7 @@ const Navbar = ({ setSearchResult }) => {
 
               <Link to={"/"} className="link">
                 <span className="navNarLinks" onClick={handleLogout}>
-                  Log out
+                  Logout
                 </span>
               </Link>
             </div>

@@ -44,9 +44,11 @@
     flex-direction: column;
 
     .lgTitle {
-      font-size: 120px;
-      color: #E50914;
+      font-size: 100px;
+      color: #e50914;
       font-weight: 600;
+      // background-color: green;
+      width: 1100px;
     }
 
     .desc {
@@ -70,6 +72,12 @@
         &.play {
           background-color: white;
           color: var(--main-color);
+
+          &:hover {
+            background-color: #e50914;
+            color: white;
+            transition: all 0.7s ease;
+          }
         }
 
         &.more {

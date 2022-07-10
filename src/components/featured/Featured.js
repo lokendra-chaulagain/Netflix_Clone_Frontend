@@ -3,33 +3,18 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./featured.scss";
+import { Link } from "react-router-dom";
 
 function Featured({
   genreSelected,
   genreItems,
   setGenreSelected,
   categoryItems,
+  latestItems,
 }) {
-  console.log(genreSelected);
-  // const location = useLocation();
-  // const path = location.pathname.split("/")[1];
-  // console.log(path);
-
-  // const [pathItem, setPathItem] = useState([]);
-  // useEffect(() => {
-  //   const fetchPathItem = async () => {
-  //     try {
-  //       const res = await axios.get(`/movies/category/${path}`);
-  //       setPathItem(res.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchPathItem();
-  // }, [path]);
-
+  console.log(latestItems);
+  var index4 = Math.floor(Math.random() * latestItems?.length);
   var index3 = Math.floor(Math.random() * categoryItems?.length);
-
   var index = Math.floor(Math.random() * genreItems?.length);
 
   //All series and movies
@@ -47,38 +32,15 @@ function Featured({
   }, []);
   console.log(allSeriesMovies);
   var index1 = Math.floor(Math.random() * allSeriesMovies.length);
-  console.log(genreSelected);
+  console.log(allSeriesMovies[index1]?.thumbnail);
 
   //path
-  // const location = useLocation();
-  // const path = location.pathname.split("/")[-1];
-  // console.log(path);
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
+  console.log(path);
 
   return (
     <div className="featured">
-      {/* {categoryItems ? (
-        (
-          <img
-            className="featuredBgImage"
-            src={categoryItems[index3]?.thumbnail}
-            alt=""
-          />
-        ) ??
-        genreSelected(
-          <img
-            className="featuredBgImage"
-            src={genreItems[index]?.thumbnail}
-            alt=""
-          />
-        )
-      ) : (
-        <img
-          className="featuredBgImage"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/8459cea4-79ab-4f27-9ef0-a7c92a30a9bb/20e8b869-a0ff-4444-8543-b1e989422cd9/NP-en-20220411-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-          alt=""
-        />
-      )} */}
-
       {
         <>
           {categoryItems && (
@@ -89,7 +51,7 @@ function Featured({
             />
           )}
 
-          {genreSelected === null && (
+          {genreSelected && (
             <img
               className="featuredBgImage"
               src={genreItems[index]?.thumbnail}
@@ -97,10 +59,18 @@ function Featured({
             />
           )}
 
-          {genreSelected && (
+          {path === "latest" && (
             <img
               className="featuredBgImage"
-              src={genreItems[index]?.thumbnail}
+              src={latestItems[index4]?.thumbnail}
+              alt=""
+            />
+          )}
+
+          {path === "home" && (
+            <img
+              className="featuredBgImage"
+              src={allSeriesMovies[index1]?.thumbnail}
               alt=""
             />
           )}
@@ -128,21 +98,72 @@ function Featured({
           <option value="Documentary">Documentary</option>
         </select>
       </div>
-
-      <img src="assets/image1.jpg" alt="" />
-
+      {/* <img src="assets/image1.jpg" alt="" /> */}
       <div className="info">
+        {categoryItems && (
+          <span className="lgTitle">{categoryItems[index3]?.title}</span>
+        )}
 
-        <span className="lgTitle">NETFLIXdsdfs</span>
-        <span className="desc">
-          "This is temporary description not from database hai ta"
-        </span>
+        {genreSelected && (
+          <span className="lgTitle">{genreItems[index]?.title}</span>
+        )}
+
+        {path === "latest" && (
+          <span className="lgTitle">{latestItems[index4]?.title}</span>
+        )}
+
+        {path === "home" && (
+          <span className="lgTitle">{allSeriesMovies[index1]?.title}</span>
+        )}
+
+        {/* Desc */}
+
+        {categoryItems && (
+          <span className="desc">{categoryItems[index3]?.desc}</span>
+        )}
+
+        {genreSelected && (
+          <span className="desc">{genreItems[index]?.desc}</span>
+        )}
+
+        {path === "latest" && (
+          <span className="desc">{latestItems[index4]?.desc}</span>
+        )}
+
+        {path === "home" && (
+          <span className="desc">{allSeriesMovies[index1]?.desc}</span>
+        )}
 
         <div className="buttons">
-          <button className="play">
-            <PlayArrow />
-            <span>Play</span>
-          </button>
+          {categoryItems && (
+            <Link to={`/watch/${categoryItems[index3]?._id}`} className="link">
+              <button className="play">
+                <PlayArrow />
+                <span>Play</span>
+              </button>
+            </Link>
+          )}
+
+          {genreSelected && (
+            <Link to={`/watch/${genreItems[index]?._id}`} className="link">
+              <button className="play">
+                <PlayArrow />
+                <span>Play</span>
+              </button>
+            </Link>
+          )}
+
+          {path === "latest" && (
+            <Link
+              to={`/watch/${allSeriesMovies[index1]?._id}`}
+              className="link"
+            >
+              <button className="play">
+                <PlayArrow />
+                <span>Play</span>
+              </button>
+            </Link>
+          )}
 
           <button className="more">
             <InfoOutlined />

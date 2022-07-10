@@ -15,6 +15,7 @@ export function AllSeriesMoviesContextProvider({ children }) {
   const [allThriller, setAllThriller] = useState([]);
   const [allRomance, setAllRomance] = useState([]);
   const [allSeriesAndMovies, setAllSeriesAndMovies] = useState([]);
+  const [latest5, setLatest] = useState([]);
 
   useEffect(() => {
     const fetchAllMoviesSeries = async () => {
@@ -45,12 +46,16 @@ export function AllSeriesMoviesContextProvider({ children }) {
 
         const res9 = await axios.get("/movies/all");
         setAllSeriesAndMovies(res9.data);
+
+        const res = await axios.get("/movies/latest5");
+        setLatest(res.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchAllMoviesSeries();
   }, []);
+
 
   return (
     <AllSeriesMoviesContext.Provider
@@ -64,6 +69,7 @@ export function AllSeriesMoviesContextProvider({ children }) {
         allThriller,
         allRomance,
         allSeriesAndMovies,
+        latest5,
       }}
     >
       {children}
