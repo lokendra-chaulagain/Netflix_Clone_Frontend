@@ -47,25 +47,34 @@ function Featured({
   }, []);
   console.log(allSeriesMovies);
   var index1 = Math.floor(Math.random() * allSeriesMovies.length);
+  console.log(genreSelected);
+
+  //path
+  // const location = useLocation();
+  // const path = location.pathname.split("/")[-1];
+  // console.log(path);
 
   return (
     <div className="featured">
-      {/* {genreSelected === undefined ? (
-        <img
-          className="featuredBgImage"
-          src={allSeriesMovies[index1]?.thumbnail}
-          alt=""
-        />
-      ) ??  categoryItems  (
-        <img
-          className="featuredBgImage"
-          src={categoryItems[index3]?.thumbnail}
-          alt=""
-        />
+      {/* {categoryItems ? (
+        (
+          <img
+            className="featuredBgImage"
+            src={categoryItems[index3]?.thumbnail}
+            alt=""
+          />
+        ) ??
+        genreSelected(
+          <img
+            className="featuredBgImage"
+            src={genreItems[index]?.thumbnail}
+            alt=""
+          />
+        )
       ) : (
         <img
           className="featuredBgImage"
-          src={genreItems[index]?.thumbnail}
+          src="https://assets.nflxext.com/ffe/siteui/vlv3/8459cea4-79ab-4f27-9ef0-a7c92a30a9bb/20e8b869-a0ff-4444-8543-b1e989422cd9/NP-en-20220411-popsignuptwoweeks-perspective_alpha_website_large.jpg"
           alt=""
         />
       )} */}
@@ -80,17 +89,21 @@ function Featured({
             />
           )}
 
-          {genreSelected === undefined && <img
-            className="featuredBgImage"
-            src={allSeriesMovies[index1]?.thumbnail}
-            alt=""
-          />}
+          {genreSelected === null && (
+            <img
+              className="featuredBgImage"
+              src={genreItems[index]?.thumbnail}
+              alt=""
+            />
+          )}
 
-         {genreSelected &&  <img
-            className="featuredBgImage"
-            src={genreItems[index]?.thumbnail}
-            alt=""
-          />}
+          {genreSelected && (
+            <img
+              className="featuredBgImage"
+              src={genreItems[index]?.thumbnail}
+              alt=""
+            />
+          )}
         </>
       }
 
@@ -119,9 +132,9 @@ function Featured({
       <img src="assets/image1.jpg" alt="" />
 
       <div className="info">
-        <img src="assets/logo.png" alt="" />
+
+        <span className="lgTitle">NETFLIXdsdfs</span>
         <span className="desc">
-          {" "}
           "This is temporary description not from database hai ta"
         </span>
 

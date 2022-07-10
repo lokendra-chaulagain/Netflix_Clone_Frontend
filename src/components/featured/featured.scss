@@ -43,8 +43,10 @@
     display: flex;
     flex-direction: column;
 
-    img {
-      width: 400px;
+    .lgTitle {
+      font-size: 120px;
+      color: #E50914;
+      font-weight: 600;
     }
 
     .desc {

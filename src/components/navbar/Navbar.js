@@ -5,6 +5,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import "./navbar.scss";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/authContext/AuthContext";
+import HorizontalSplitIcon from "@mui/icons-material/HorizontalSplit";
+import HomeIcon from "@mui/icons-material/Home";
+import ClearIcon from "@mui/icons-material/Clear";
+
+import LogoutIcon from "@mui/icons-material/Logout";
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 const Navbar = ({ setSearchResult }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,11 +28,72 @@ const Navbar = ({ setSearchResult }) => {
     window.location.replace("/login");
   };
 
+  //Toggle Sidebar
+  const [sidebar, setSidebar] = useState(false);
+  const showSlider = () => {
+    setSidebar(!sidebar);
+  };
+
   return (
     <div className={isScrolled ? "navbar scrolled" : "navbar"}>
       <div className="container">
         <div className="left">
           <img src="/assets/logo.png" alt="" />
+
+          <HorizontalSplitIcon className="barIcon" onClick={showSlider} />
+          {/* slider======== */}
+          {sidebar && (
+            <div className="sideBar" onClick={showSlider}>
+              <ClearIcon className="clearIcon" />
+              <div className="drawerSliderWrapper">
+                <NavLink to="/"  activeclassname="dactive" className="link">
+                  <div className="sliderItems">
+                    <HomeIcon className="sliderListIcons" />
+                    <span className="sliderListItem">Home</span>
+                  </div>
+                </NavLink>
+
+                <NavLink to="/series" activeclassname="dactive" className="link">
+                  <div className="sliderItems">
+                    <DriveFileRenameOutlineIcon className="sliderListIcons" />
+                    <span className="sliderListItem">Series</span>
+                  </div>
+                </NavLink>
+
+                <NavLink to="/movies" activeclassname="dactive" className="link">
+                  <div className="sliderItems">
+                    <AccountBoxIcon className="sliderListIcons" />
+                    <span className="sliderListItem">Movies</span>
+                  </div>
+                </NavLink>
+
+                <NavLink to="/kids" activeclassname="dactive" className="link">
+                  <div className="sliderItems">
+                    <SettingsIcon className="sliderListIcons" />
+                    <span className="sliderListItem">Kids</span>
+                  </div>
+                </NavLink>
+
+                <NavLink to="/latest" activeclassname="dactive" className="link">
+                  <div className="sliderItems">
+                    <SettingsIcon className="sliderListIcons" />
+                    <span className="sliderListItem">Latest</span>
+                  </div>
+                </NavLink>
+
+                <NavLink to="/" activeclassname="dactive" className="link">
+                  <div className="sliderItems">
+                    <LogoutIcon className="sliderListIcons" />
+                    <span className="sliderListItem" onClick={handleLogout}>
+                      LOGOUT
+                    </span>
+                  </div>
+                </NavLink>
+              </div>
+            </div>
+          )}
+          {/* */}
+          {/* ========== */}
 
           <NavLink to={"/"} activeclassname="active" className="link">
             <span
@@ -67,10 +136,8 @@ const Navbar = ({ setSearchResult }) => {
             />
           </div>
 
-          <img className="nabBarProfile" src="assets/profile.jpg" alt="" />
-
           <div className="profile">
-            <ArrowDropDown className="icon" />
+            <ArrowDropDown className="dropDownIcon" />
 
             <div className="options">
               <span className="navNarLinks">Settings </span>
