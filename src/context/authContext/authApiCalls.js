@@ -11,5 +11,6 @@ export const loginCall = async (userCredentials, dispatch) => {
     toast.success("Login Successful", { theme: "colored" });
   } catch (error) {
     dispatch({ type: "LOGIN_FAILURE" });
+    toast.error("Wrong Credentials", { theme: "colored" });
   }
 };

@@ -10,7 +10,8 @@ import RedditIcon from "@mui/icons-material/Reddit";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useAPI } from "../../context/getContext";
-import {format}  from 'timeago.js';
+import { format } from "timeago.js";
+import { Link } from "react-router-dom";
 
 function Footer() {
   const { latest5 } = useAPI();
@@ -38,10 +39,14 @@ function Footer() {
           <hr className="latestUploadHr" />
 
           {latest5.map((latest5Item, i) => (
-            <div index={i} key={i} className="col2Item">
-              <span className="col2ItemTitle">{latest5Item.title} </span>
-              <span className="col2ItemUploadTime">{format(latest5Item.createdAt)  } </span>
-            </div>
+            <Link to={`/watch/${latest5Item?._id}`} className="link">
+              <div index={i} key={i} className="col2Item">
+                <span className="col2ItemTitle">{latest5Item?.title} </span>
+                <span className="col2ItemUploadTime">
+                  {format(latest5Item.createdAt)}{" "}
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
 
